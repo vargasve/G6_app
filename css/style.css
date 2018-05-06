@@ -3,7 +3,43 @@
 
 }
 
-h1{
+.container{
     text-align: center;
-    size: 150px;
+}
+h1{
+    size: 125px;
+}
+
+.button{
+    border: none;
+    padding: 10px;
+    font-size: 32px;
+    margin: 4px;
+    border-radius: 50%;
+}
+.btn1{
+    background-color: red;
+}
+.btn2{
+    background-color: orange;
+}
+.btn3{
+    background-color: yellow;
+}
+.btn4{
+    background-color: green;
+}
+.btn5{
+    background-color: blue;
+}
+.btn6{
+    background-color: purple;
+}
+#map{
+    border: palevioletred;
+    border-style: double;
+}
+#hhInfo{
+    border: dodgerblue;
+    border-style: dotted;
 }
