@@ -38,8 +38,10 @@ h1{
 #map{
     border: palevioletred;
     border-style: double;
+    padding: 10px;
 }
 #hhInfo{
     border: dodgerblue;
     border-style: dotted;
+    padding: 10px;
 }
