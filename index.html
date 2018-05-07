@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="30830594769-3nhm6gil4081efvec3v99sos23oj9lnc.apps.googleusercontent.com.apps.googleusercontent.com">
+
   <title>HH</title>
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -31,7 +33,7 @@
   async defer></script>
 
   <!-- link to javascript -->
-  <script src="javaScript/script.js"></script>
+  <script src="javascript/script.js"></script>
 
 </head>
 
@@ -42,6 +44,8 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="#"><img src="images/invertedLogo.png" height="50px" width="175px"></a>
       </div>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
       <form class="navbar-form navbar-left" action="/action_page.php">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="search">
