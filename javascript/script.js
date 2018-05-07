@@ -23,7 +23,7 @@ var config = {
      var map;
      var infowindow;
      var searchwords = "happy+hour"; 
-     var bar = []; 
+     var bars = []; 
 
 
      function initMap() {
