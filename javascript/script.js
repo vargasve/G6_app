@@ -148,6 +148,17 @@ function createMarker(place) {
 
 // Google OAuth
 
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAx2wPUKX8AG232jWrO8DPSzavhcEAm2eM",
+    authDomain: "happyhowler-58dad.firebaseapp.com",
+    databaseURL: "https://happyhowler-58dad.firebaseio.com",
+    projectId: "happyhowler-58dad",
+    storageBucket: "happyhowler-58dad.appspot.com",
+    messagingSenderId: "30830594769"
+  };
+  firebase.initializeApp(config);
+
     // [START googlecallback]
     function onSignIn(googleUser) {
         console.log('Google Auth Response', googleUser);
