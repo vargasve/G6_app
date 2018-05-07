@@ -148,6 +148,8 @@ function createMarker(place) {
 
 // Google OAuth
 
+
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAx2wPUKX8AG232jWrO8DPSzavhcEAm2eM",
