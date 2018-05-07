@@ -116,23 +116,7 @@ function createMarker(place) {
   });
 }
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//TEST
 
   
 // var placeId ="ChIJv1GZ8HHMRIYRwYLWJiQySY0";
@@ -162,7 +146,15 @@ function createMarker(place) {
 //     map: map
 //   }, "<h1>pin 1</h1><p> Iron Cactus</p>");
 
+// Google OAuth
 
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
 
 
   
