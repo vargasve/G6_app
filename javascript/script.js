@@ -227,7 +227,7 @@ function createMarker(place) {
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
+            var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
             // [START_EXCLUDE]
          //   document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
