@@ -191,9 +191,9 @@ function createMarker(place) {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // [START_EXCLUDE]
-            document.getElementById('quickstart-oauthtoken').textContent = token;
+            document.getElementById('quickstart-account-details').textContent = token.displayName;
           } else {
-            document.getElementById('quickstart-oauthtoken').textContent = 'null';
+            document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
           }
           // The signed-in user info.
@@ -211,7 +211,6 @@ function createMarker(place) {
             alert('You have already signed up with a different auth provider for that email.');
             // If you are using multiple auth providers on your app you should handle linking
             // the user's accounts here.
-          } else {
             console.error(error);
           }
           // [END_EXCLUDE]
