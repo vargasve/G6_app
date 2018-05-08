@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="30830594769-3nhm6gil4081efvec3v99sos23oj9lnc.apps.googleusercontent.com.apps.googleusercontent.com">
+
   <title>HH</title>
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -22,8 +24,19 @@
   <link rel="stylesheet" type="text/css" href="css/font/flaticon.css">
   <!-- link to css stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places&callback=initMap"
+  async defer></script>
+
   <!-- link to javascript -->
-  <script src="javaScript/script.js"></script>
+  <script src="javascript/script.js"></script>
+
 </head>
 
 <body>
@@ -44,6 +57,8 @@
       <div id="weather">
         
       </div>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
       <form class="navbar-form navbar-left" action="/action_page.php">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="search">
@@ -68,27 +83,15 @@
 
     <!-- search buttons -->
     <div class="row">
-      <div class="col-md-12">
-        <div class="btn-group">
-          <button type="button" class="button btn1">
-            <i class="flaticon-cutlery"></i>
-          </button>
-          <button type="button" class="button btn2">
-            <i class="flaticon-beer"></i>
-          </button>
-          <button type="button" class="button btn3">
-            <i class="flaticon-wine-glass"></i>
-          </button>
-          <button type="button" class="button btn4">
-            <i class="flaticon-food"></i>
-          </button>
-          <button type="button" class="button btn5">
-            <i class="flaticon-hookah"></i>
-          </button>
-          <button type="button" class="button btn6">
-            <i class="flaticon-dog"></i>
-          </button>
-        </div>
+      <!-- map column -->
+      <div class="col-md-8" id="map">
+        <p><br><br><br><br>MAP<br><br><br><br></p>
+
+
+        <div id="map_div" style="height: 600px;"></div>
+        
+
+
       </div>
     </div>
     <!-- container for map and HH info -->
