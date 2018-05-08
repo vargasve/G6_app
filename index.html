@@ -10,6 +10,7 @@
   <meta name="google-signin-cookiepolicy" content="single_host_origin">
   <meta name="google-signin-scope" content="profile email">
   <title>HH</title>
+
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <!-- link to jquery -->
@@ -28,40 +29,153 @@
   <!-- link to css stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-
-
-  <!-- Move to stylesheet -->
-<style>
-  .qs-sign-out {
-
-    font-family: Roboto,arial,sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: .21px;
-    color: red;
-  }
-</style>
-
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
 
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places&callback=initMap"
-    async defer></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- link to javascript -->
+
+  <script src="javascript/store-locator.min.js"></script>
   <script src="javascript/script.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    #map-canvas,
+    #panel {
+      height: auto;
+    }
+
+    #panel {
+      float: left;
+      margin-right: 10px;
+    }
+
+    #panel .feature-filter label {
+      width: 130px;
+    }
+
+    p.attribution,
+    p.attribution a {
+      color: #666;
+    }
 
 
+    .storelocator-panel {
+  border: 1px solid #ccc;
+  overflow: auto;
+}
 
+.storelocator-panel .store-list {
+  margin: 0;
+  padding: 0;
+}
+
+.storelocator-panel .store-list li,
+.storelocator-panel .directions-panel {
+  padding: 5px;
+}
+.storelocator-panel .directions-panel {
+  font-size: 0.8em;
+}
+
+.storelocator-panel .store-list li.store:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.storelocator-panel .store-list li.highlighted,
+.storelocator-panel .store-list li.highlighted:hover {
+  background: #ccf;
+}
+
+.storelocator-panel .directions {
+  display: none;
+}
+
+.storelocator-panel .location-search {
+  padding: 5px;
+}
+
+.storelocator-panel .location-search input {
+  width: 95%;
+}
+
+.storelocator-panel .location-search h4 {
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+}
+
+.storelocator-panel .store-list .no-stores {
+  color: grey;
+}
+
+.storelocator-panel .store .features {
+  display: none;
+}
+
+.storelocator-panel .feature-filter {
+  overflow: hidden;
+}
+
+.storelocator-panel .feature-filter label {
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0.4em;
+  float: left;
+}
+
+.store .title {
+  font-weight: bold;
+}
+
+.store .address,
+.store .phone,
+.store .web,
+.store .misc {
+  font-size: 80%;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.store .features {
+  overflow: hidden;
+  color: grey;
+  margin: 0;
+  padding: 0;
+  font-size: 70%;
+  max-width: 250px;
+}
+
+.store .features li {
+  display: inline;
+  float: left;
+  padding-right: 0.8em;
+}
+
+.store .web a {
+  color: green
+}
+
+.store .action {
+  font-size: 0.8em;
+  color: green;
+  margin-right: 0.5em;
+}
+
+  </style>
 </head>
 
 <body>
-  <!-- nav bar -->
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -75,37 +189,16 @@
       <!-- [START google_button] -->
 
       <!-- Button that handles sign-in/sign-out -->
-      <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
-
-     <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-
-      <!-- <div class="quickstart-user-details-container">
-        Firebase sign-in status:
-        <span id="quickstart-sign-in-status">Unknown</span>
-        <div>Firebase auth
-          <code>currentUser</code> object value:</div>
-        <pre><code id="quickstart-account-details">null</code></pre>
-      </div>
-    -->
-
-
-
-
+      <!--  <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
+          -->
       <!-- END OF GOOGLE AUTH -->
 
 
-      <form class="navbar-form navbar-left" action="/action_page.php">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" name="search">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              Fetch!
-            </button>
-          </div>
-        </div>
-      </form>
     </div>
   </nav>
+  <!-- <div id="panel"></div>
+    <div id="map-canvas"></div> -->
+
   <!-- site container -->
   <div class="container">
     <!-- logo header -->
@@ -118,6 +211,7 @@
 
     <!-- search buttons -->
     <div class="row">
+      <div class="col-md-12 search-bar"></div>
       <div class="col-md-12">
         <div class="btn-group">
           <button type="button" class="button btn1">
@@ -147,42 +241,27 @@
         <!-- map column -->
         <div class="col-md-8" id="map">
           <p>
-            <br>
-            <br>
-            <br>
-            <br>MAP
-            <br>
-            <br>
-            <br>
-            <br>
+            MAP
           </p>
 
-
-          <div id="map_div" style="height: 600px;"></div>
-
-
+          <div id="map-canvas" style="height: 600px;"></div>
 
         </div>
         <div class="col-md-4" id="hhInfo">
           <p>
-            <br>
-            <br>
-            <br>
             <br>HH INFO
-            <br>
-            <br>
-            <br>
-            <br>
-
-        
           </p>
-          <ul id="results-list">
-            </ul><!-- #results-list -->
+          <div id="panel">
+          </div>
+          <!-- #results-list -->
         </div>
       </div>
     </div>
 
   </div>
+
+
+
 </body>
 
 </html>
