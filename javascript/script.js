@@ -166,7 +166,12 @@ function createMarker(place) {
           // [END signin]
         } else {
           // [START signout]
-          firebase.auth().signOut();
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+          }
           // [END signout]
         }
         // [START_EXCLUDE]
