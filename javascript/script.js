@@ -278,7 +278,7 @@ function createMarker(place) {
             // [START_EXCLUDE]
          //   document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
             var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            signinStuff.classList.add('qs-sign-out'); 
+            //signinStuff.classList.add('qs-sign-out'); 
             // document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
            // document.getElementById('quickstart-account-details').textContent = displayName;
 
