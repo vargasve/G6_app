@@ -191,9 +191,9 @@ function createMarker(place) {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // [START_EXCLUDE]
-            document.getElementById('quickstart-account-details').textContent = token.displayName;
+         //   document.getElementById('quickstart-account-details').textContent = token.displayName;
           } else {
-            document.getElementById('quickstart-account-details').textContent = 'null';
+         //   document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
           }
           // The signed-in user info.
