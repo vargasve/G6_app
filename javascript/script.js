@@ -62,44 +62,88 @@ var config = {
 
 }//closing initMap()
 
-function callback(results, status) {
-  console.log(results.length);
-  console.log(results);
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
+
+//function callback(results, status) {
+//  console.log(results.length);
+ // console.log(results);
+  //if (status === google.maps.places.PlacesServiceStatus.OK) {
+    //  for (var i = 0; i < results.length; i++) {
 
           //Using setTimeout and closure because limit of 10 queries /second for getDetails */
-          (function (j) {
-              var request = {
-                  placeId: results[i]['place_id']
-              };
+      //    (function (j) {
+        //      var request = {
+          //        placeId: results[i]['place_id']
+           //   };
 
-              service = new google.maps.places.PlacesService(map);
-              setTimeout(function() {
-                  service.getDetails(request, callback);
-              }, j*100);
+             // service = new google.maps.places.PlacesService(map);
+              //setTimeout(function() {
+                //  service.getDetails(request, callback);
+             // }, j*100);
 
 
-          })(i);
+         /// })(i);
 
-          function callback(place, status) {
-              if (status == google.maps.places.PlacesServiceStatus.OK) {
-                  createMarker(place);
-                  console.log(place.name +  results.length + bars.length);
-                  bars.push([place.name, place.website, place.rating]);
+          //function callback(place, status) {
+            //  if (status == google.maps.places.PlacesServiceStatus.OK) {
+              //    createMarker(place);
+                //  console.log(place.name +  results.length + bars.length);
+                //  bars.push([place.name, place.website, place.rating]);
 
-                  if(results.length == bars.length){
-                      console.log(bars);
-                      var request = new XMLHttpRequest();
-                      request.open('POST', 'http://localhost/agency-map/src/save.php', true);
-                      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                      request.send(JSON.stringify(bars));
-                  }
-              }
-          }
+                  //if(results.length == bars.length){
+                    //  console.log(bars);
+                      //var request = new XMLHttpRequest();
+                     // request.open('POST', 'http://localhost/agency-map/src/save.php', true);
+                     // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                    //  request.send(JSON.stringify(bars));
+                //  }
+             // }
+         // }
+
+     // }
+ // }
+//} 
+
+
+// NEW  CALLBACK 
+
+function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        var place = results[i];
+        createMarker(results[i]);
+
+
+        (function (j) {
+            var request = {
+                placeId: results[i]['place_id']
+            };
+
+
+            service = new google.maps.places.PlacesService(map);
+            //service.getDetails(request, callback);
+                        service.getDetails(request, callback);
+
+        
+
+        })(i);
+        function callback(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                createMarker(place);
+                console.log(place.name +  results.length + bars.length);
+                bars.push([place.name, place.website, place.rating]);
+
+                if(results.length == bars.length){
+                    console.log(bars);
+
+                }
+            }
+        }
+
       }
+    }
   }
-}
+
+  // END OF NEW CALLBACK
 
 
 
@@ -107,11 +151,13 @@ function createMarker(place) {
   var placeLoc = place.geometry.location;
   var marker = new google.maps.Marker({
     map: map,
-    position: place.geometry.location
+    position: place.geometry.location,
+    
   });
 
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.setContent(place.name);
+
     infowindow.open(map, this);
   });
 }
