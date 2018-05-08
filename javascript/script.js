@@ -230,10 +230,10 @@ function createMarker(place) {
             var uid = user.uid;
             var providerData = user.providerData;
             // [START_EXCLUDE]
-            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
             // document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-            document.getElementById('quickstart-account-details').textContent = displayName;
+           // document.getElementById('quickstart-account-details').textContent = displayName;
 
             // [END_EXCLUDE]
           } else {
@@ -241,7 +241,7 @@ function createMarker(place) {
             // [START_EXCLUDE]
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
-            document.getElementById('quickstart-account-details').textContent = 'null';
+            //document.getElementById('quickstart-account-details').textContent = 'null';
             // document.getElementById('quickstart-oauthtoken').textContent = 'null';
             // [END_EXCLUDE]
           }
