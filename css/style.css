@@ -53,3 +53,8 @@ h1{
     padding-right: 5px;
     font-size: .75rem;
 }
+
+img {
+    width:100px;
+    height:100px;
+}

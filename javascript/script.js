@@ -1,5 +1,7 @@
 
 
+
+
 // URL for darksky weather api
 var queryURL = "https://api.darksky.net/forecast/7962c1bbccd7a1616faad70193d8617a/30.1828,-97.72928"
 
@@ -192,10 +194,24 @@ function onSignIn(googleUser) {
   }
 
 
-  
+
+$(document).ready(function(){
+
+
+  var pickUpLatitude = 30.28715;
+  var pickUpLongitude = 97.72886 ;
+  var destinationLatitude = 30.2646591;
+  var destinationLongitude = 97.7331236;
 
 
 
 
+  var lyftURL = "https://lyft.com/ride?id=lyft&pickup%5latitude%5D="+pickUpLatitude+"&pickup%5longitude%5D=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination%5latitude%5D="+destinationLatitude+"destination%5longitude%5D=-" + destinationLongitude;
 
-    
+  var aTag = $("<a>");
+  var imgLogo = $("<img src=./images/Lyft_Logo_Pink.png>");
+  aTag.append(imgLogo);
+  aTag.attr("href", lyftURL);
+  $("#lyftButton").append(aTag);
+  console.log("working");
+});
