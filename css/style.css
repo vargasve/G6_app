@@ -129,7 +129,7 @@ p.attribution a {
 }
 
 .storelocator-panel .location-search input {
-    width: 75%;
+   /* width: 75%; */
 }
 
 .storelocator-panel .location-search h4 {
