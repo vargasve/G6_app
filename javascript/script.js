@@ -1,18 +1,3 @@
-var config = {
-  apiKey: "AIzaSyAx2wPUKX8AG232jWrO8DPSzavhcEAm2eM",
-  authDomain: "happyhowler-58dad.firebaseapp.com",
-  databaseURL: "https://happyhowler-58dad.firebaseio.com",
-  projectId: "happyhowler-58dad",
-  storageBucket: "happyhowler-58dad.appspot.com",
-  messagingSenderId: "30830594769"
-};
-firebase.initializeApp(config);
-
-
-var database = firebase.database();
-
-//////////////////////////////////////////////////
-
 // Grabbing and populating favorites based on map boundaries
 
 var map;
@@ -32,7 +17,6 @@ google.maps.event.addDomListener(window, 'load', function () {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-
   var panelDiv = document.getElementById('panel');
 
   var data = new PlacesDataSource(map);
@@ -48,10 +32,15 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
   };
 
+  //////////////////////////////////////////////////
+
   new storeLocator.Panel(panelDiv, {
-    view: view
+    view: view, 
+    featureFilter: true
   });
 });
+
+//////////////////////////////////////////////////
 
 /**
  * Creates a new PlacesDataSource.
@@ -63,6 +52,8 @@ function PlacesDataSource(map) {
   this.details_cache_ = {};
 }
 
+//////////////////////////////////////////////////
+
 // Customized and created originalGenerateFieldsHTML with a new function that creates a new and prepends another div 
 storeLocator.Store.prototype.originalGenerateFieldsHTML_ = storeLocator.Store.prototype.generateFieldsHTML_;
 storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
@@ -72,6 +63,8 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
   }
   return fieldsHTML;
 }
+
+//////////////////////////////////////////////////
 
 /**
  * @inheritDoc
@@ -91,13 +84,13 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var callbacksRemaining = results.length;
 
     for (var i = 0, result; result = results[i]; i++) {
-      function detailsCallback (details, details_status) {
+      function detailsCallback(details, details_status) {
         if (result) {
-            if (details && details_status != 'CACHED') {
-              details_cache[result.place_id] = details;
-            }
+          if (details && details_status != 'CACHED') {
+            details_cache[result.place_id] = details;
+          }
 
-            var props = {
+          var props = {
             title: result.name,
             address: result.vicinity,
 
@@ -120,7 +113,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
 
         if (--callbacksRemaining <= 0) {
-           callback(stores);
+          callback(stores);
         }
       }
 
