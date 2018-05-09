@@ -71,8 +71,8 @@ $(document).ready(function () {
         hhFeatures.featureData = {
             "hhPlaceID": {
                 "hhTimes": {
-                    "starttime": "hh:mm",
-                    "endtime": "hh:mm",
+                    "starttime": "",
+                    "endtime": "",
                 },
                 "hhFilters": {
                     "beer": false,
