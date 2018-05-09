@@ -73,11 +73,11 @@
     <div id="map-canvas"></div> -->
 
   <!-- site container -->
-  <div class="container">
+  <div class="container-fluid">
     <!-- logo header -->
     <header>
       <h1>
-        <img src="images/logo.png">
+       <!-- <img src="images/logo.png"> -->
       </h1>
     </header>
 
@@ -87,43 +87,39 @@
       <div class="col-md-12 search-bar"></div>
       <div class="col-md-12">
         <div class="btn-group">
-          <button type="button" class="button btn1">
+          <button type="button" id="btn-clear" class="button btn1">
             <i class="flaticon-cutlery"></i>
           </button>
-          <button type="button" class="button btn2">
+          <button type="button" id="btn-beer" class="button btn2">
             <i class="flaticon-beer"></i>
           </button>
-          <button type="button" class="button btn3">
+          <button type="button" id="btn-wine" class="button btn3">
             <i class="flaticon-wine-glass"></i>
           </button>
-          <button type="button" class="button btn4">
+          <button type="button" id="btn-food" class="button btn4">
             <i class="flaticon-food"></i>
           </button>
-          <button type="button" class="button btn5">
+          <button type="button" id="btn-hookah" class="button btn5">
             <i class="flaticon-hookah"></i>
           </button>
-          <button type="button" class="button btn6">
+          <button type="button" id="btn-dog" class="button btn6">
             <i class="flaticon-dog"></i>
           </button>
         </div>
       </div>
     </div>
     <!-- container for map and HH info -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <!-- map column -->
-        <div class="col-md-8" id="map">
-          <p>
-            MAP
-          </p>
+        <div class="col-md-9" id="map">
+
 
           <div id="map-canvas" style="height: 600px;"></div>
 
         </div>
-        <div class="col-md-4" id="hhInfo">
-          <p>
-            <br>HH INFO
-          </p>
+        <div class="col-md-3" id="hhInfo">
+
           <div id="panel">
           </div>
           <!-- #results-list -->
