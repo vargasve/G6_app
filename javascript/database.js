@@ -74,3 +74,7 @@ database.ref("/happyHowlerData").push(hhFilters);
 console.log(hhFilters);
 
 });
+
+// NOTE IDs are place-id, place-happyhours-start, place-happyhours-end, 
+// input-beer, input-wine, input-food, input-hookah , submit 
+
