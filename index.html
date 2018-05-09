@@ -63,7 +63,7 @@
 
       <!-- Button that handles sign-in/sign-out -->
       <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
-          
+
       <!-- END OF GOOGLE AUTH -->
 
 
@@ -77,45 +77,31 @@
     <!-- logo header -->
     <header>
       <h1>
-       <!-- <img src="images/logo.png"> -->
+        <!-- <img src="images/logo.png"> -->
       </h1>
     </header>
-
+    <div class="btn-group">
+      <!-- Moved buttons to script -->
+    </div>
 
     <!-- search buttons -->
     <div class="row">
-      <div class="col-md-12 search-bar"></div>
-      <div class="col-md-12">
-        <div class="btn-group">
-<!-- Moved buttons to script -->
+      <div class="col-md-3">
+        <div id="panel">
         </div>
-        <div id="search-wrap"></div>
+      </div>
+
+      <div class="col-md-9">
+        <div id="map-canvas">
+          <div class="col-md-12" id="map"></div>
+        </div>
+
       </div>
     </div>
-    <!-- container for map and HH info -->
-    <div class=" map-wrapper">
-      <div class="row">
-        <!-- map column -->
-        <div class="col-md-12" id="map">
-
-
-          <div id="map-canvas"></div>
-
-        </div>
-        </div>
-        <div class="row info-wrapper">
-        <div class="col-md-12" id="hhInfo">
-
-          <div id="panel">
-          </div>
-          <!-- #results-list -->
-        </div>
-        </div>
-      </div>
-
+  </div>
+  <!-- container for map and HH info -->
 
   </div>
-
 
 
 </body>
