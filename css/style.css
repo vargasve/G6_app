@@ -62,7 +62,7 @@ body {
 
 #map-canvas,
 #panel {
-    height: auto;
+    height: 100%;
 }
 
 #map-canvas {
@@ -91,9 +91,8 @@ p.attribution a {
 .storelocator-panel .store-list {
     margin: 0;
     padding: 0;
-    float: right;
     background-color: #fff;
-    width: 25%;
+    width: 100;
     border: 2px solid #ccc;
 }
 
@@ -210,7 +209,6 @@ p.attribution a {
     margin: 0 auto;*/
 }
 
-#hhInfo.col-md-12 { padding: 0;}
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 /* END OF TEMP STYLES */
