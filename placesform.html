@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="30830594769-3nhm6gil4081efvec3v99sos23oj9lnc.apps.googleusercontent.com">
+
+
+    <meta name="google-site-verification" content="SKFWHYMhnbOaWTLkjx4V5PB0i9fagncU-nQo2jQqsEQ" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email">
+    <title>HH</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <!-- link to jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- link to bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <!-- bootstrap responsive link-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- link to google fonts for headers and body -->
+    <link href="https://fonts.googleapis.com/css?family=Kirang+Haerang|Roboto" rel="stylesheet">
+    <!-- link to font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- link to 'flaticon' button pics -->
+    <link rel="stylesheet" type="text/css" href="css/font/flaticon.css">
+    <!-- link to css stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="javascript/store-locator.min.js"></script>
+    <script src="javascript/database.js"></script>
+
+    <script src="javascript/script.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="images/invertedLogo.png" height="50px" width="175px">
+                </a>
+            </div>
+            <!-- GOOGLE AUTH HERE -->
+
+            <p>Sign in with your Google account below.</p>
+            <!-- [START google_button] -->
+
+            <!-- Button that handles sign-in/sign-out -->
+            <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
+
+            <!-- END OF GOOGLE AUTH -->
+
+
+        </div>
+    </nav>
+    <!-- <div id="panel"></div>
+    <div id="map-canvas"></div> -->
+
+    <!-- site container -->
+    <div class="container-fluid">
+        <!-- logo header -->
+        <header>
+            <h1>
+                Places Form
+            </h1>
+        </header>
+
+
+        <!-- search buttons -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="form-wrapper">
+                    <h2>Add New Data</h2>
+                    <form id="train-form">
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <label for="place-id">Place ID</label>
+                                <input type="text" class="form-control form-control-sm" id="place-id" placeholder="ex. ChIJXQ-Uy2LKRIYR3W5SjLhBBj0">
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="place-hh-start">Happy Hour Start</label>
+                                <input type="time" class="form-control form-control-sm" id="place-hh-start" placeholder="5:00PM">
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="place-hh-end">Happy Hour End</label>
+                                <input type="time" class="form-control form-control-sm" id="place-hh-end" placeholder="7:00PM">
+                            </div>
+                        
+                        <h3>Categories:</h3>
+<div class="form-group col-xs-12">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="input-beer" value="option1">
+                            <label class="form-check-label" for="input-beer">Beer</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="input-wine" value="option2">
+                            <label class="form-check-label" for="input-wine">Wine</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="input-food" value="option3">
+                            <label class="form-check-label" for="input-food">Food</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="input-hookah" value="option4">
+                            <label class="form-check-label" for="input-hookah">Hookah</label>
+                        </div>
+                    </div>
+                        <div class="form-group col-sm-12 col-xs-12">
+                                <label for="place-notes">Happy Hour End</label>
+                                <textarea type="textbox" rows="4" class="form-control form-control-sm" id="place-notes" placeholder="Add notes here"></textarea>
+                            </div>
+
+                    </div>
+                    <div class="form-group col-lg-2 col-sm-12 d-flex align-items-end flex-column">
+                            <button class="btn btn-primary btn-sm btn-block mt-auto" type="submit" id="submit">Submit</button>
+                        </div>
+                    </form>
+
+
+                    <div id="data-wrapper" class="table-responsive">
+                            <h2>Stuff We Added</h2>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Place ID</th>
+                                        <th>Happy Hour Start</th>
+                                        <th>Happy Hour End</th>
+                                        <th>Beer?</th>
+                                        <th>Wine?</th>
+                                        <th>Food?</th>
+                                        <th>Hookah?</th>
+                                        <th>Dog?</th>
+                                        <th>Comments</th>
+
+        
+                                    </tr>
+                                </thead>
+                                <tbody id="hhdata">
+        
+                                </tbody>
+                            </table>
+                        </div>
+
+                </div>
+
+            </div>
+            <!-- container for map and HH info -->
+
+
+
+        </div>
+
+
+
+</body>
+
+</html>
