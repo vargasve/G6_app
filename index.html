@@ -62,8 +62,8 @@
       <!-- [START google_button] -->
 
       <!-- Button that handles sign-in/sign-out -->
-      <!--  <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
-          -->
+      <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
+          
       <!-- END OF GOOGLE AUTH -->
 
 
@@ -87,45 +87,32 @@
       <div class="col-md-12 search-bar"></div>
       <div class="col-md-12">
         <div class="btn-group">
-          <button type="button" id="btn-clear" class="button btn1">
-            <i class="flaticon-cutlery"></i>
-          </button>
-          <button type="button" id="btn-beer" class="button btn2">
-            <i class="flaticon-beer"></i>
-          </button>
-          <button type="button" id="btn-wine" class="button btn3">
-            <i class="flaticon-wine-glass"></i>
-          </button>
-          <button type="button" id="btn-food" class="button btn4">
-            <i class="flaticon-food"></i>
-          </button>
-          <button type="button" id="btn-hookah" class="button btn5">
-            <i class="flaticon-hookah"></i>
-          </button>
-          <button type="button" id="btn-dog" class="button btn6">
-            <i class="flaticon-dog"></i>
-          </button>
+<!-- Moved buttons to script -->
         </div>
+        <div id="search-wrap"></div>
       </div>
     </div>
     <!-- container for map and HH info -->
-    <div class="container-fluid">
+    <div class=" map-wrapper">
       <div class="row">
         <!-- map column -->
-        <div class="col-md-9" id="map">
+        <div class="col-md-12" id="map">
 
 
-          <div id="map-canvas" style="height: 600px;"></div>
+          <div id="map-canvas"></div>
 
         </div>
-        <div class="col-md-3" id="hhInfo">
+        </div>
+        <div class="row info-wrapper">
+        <div class="col-md-12" id="hhInfo">
 
           <div id="panel">
           </div>
           <!-- #results-list -->
         </div>
+        </div>
       </div>
-    </div>
+
 
   </div>
 

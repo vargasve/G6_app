@@ -164,10 +164,10 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
           var props = {
             title: result.name,
             address: result.vicinity,
-
+            types: result.types,
             icon: result.icon,
-            hours: result.opening_hours.open_now,
-            price: result.price_level,
+            hours: result.opening_hours,
+            price: result.price_level
           };
 
           if (details) {
