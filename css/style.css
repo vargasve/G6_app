@@ -62,7 +62,6 @@ body {
 
 #map-canvas,
 #panel {
-    height: 100%;
 }
 
 #map-canvas {
@@ -196,8 +195,9 @@ p.attribution a {
 }
 
 .map-wrapper {
-    position: relative;
+    position: fixed;
     overflow: auto;
+    max-height: 650px;
 }
 
 .row.info-wrapper {
