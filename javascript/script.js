@@ -206,7 +206,7 @@ $(document).ready(function(){
 
 
 
-  var lyftURL = "https://lyft.com/ride?id=lyft&pickup%5latitude%5D="+pickUpLatitude+"&pickup%5longitude%5D=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination%5latitude%5D="+destinationLatitude+"destination%5longitude%5D=-" + destinationLongitude;
+  var lyftURL = "https://lyft.com/ride?id=lyft&pickup[latitude]="+pickUpLatitude+"&pickup[longitude]=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination[latitude]="+destinationLatitude+"destination[longitude]=-" + destinationLongitude;
 
   var aTag = $("<a>");
   var imgLogo = $("<img src=./images/Lyft_Logo_Pink.png>");
