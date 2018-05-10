@@ -132,6 +132,14 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
   if (this.props_.picture) {
     fieldsHTML = '<div class="picture"><img src="' + this.props_.picture + '"></div>' + fieldsHTML;
   }
+  if(this.props_.price) {
+    fieldsHTML = fieldsHTML + '<div class="prices">' + this.props_.price + '</div>';
+}
+
+if(this.props_.hours) {
+    fieldsHTML = fieldsHTML + '<div class="hours">' + this.props_.hours + '</div>';
+}
+
   return fieldsHTML;
 }
 
@@ -166,17 +174,34 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
             address: result.vicinity,
             types: result.types,
             icon: result.icon,
-            hours: result.opening_hours,
-            price: result.price_level
+            hours: "",
+            price: ""
           };
-
-          if (details) {
-            props.phone = details.formatted_phone_number;
-          }
-
-          if (result.photos) {
+          if (result.price_level) {
+            if (result.price_level == "1" || result.price_level == "0") {
+                props.price = "$";
+            } else if (result.price_level == "2") {
+                props.price = "$$";
+            } else if (result.price_level == "3") {
+                props.price = "$$$";
+            } else {
+                props.price = "$$$$";
+            }
+        } else {
+            props.price = "This location does not provide price level service ";
+        }
+        if (result.photos) {
             props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
-          }
+        }
+
+        if (result.opening_hours) {
+            console.log("1");
+            if (result.opening_hours.open_now == true) {
+                props.hours = "It is open now";
+            } else if (result.opening_hours.open_now == false) {
+                props.hours = "It is closed now";
+            }
+        }
 
           var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
 
