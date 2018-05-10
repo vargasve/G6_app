@@ -133,6 +133,7 @@ function PlacesDataSource(map) {
 // Customized and created originalGenerateFieldsHTML with a new function that creates a new and prepends another div 
 storeLocator.Store.prototype.originalGenerateFieldsHTML_ = storeLocator.Store.prototype.generateFieldsHTML_;
 storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
+
     fieldsHTML = this.originalGenerateFieldsHTML_(x);
     if (this.props_.picture) {
         fieldsHTML = '<div class="picture"><img src="' + this.props_.picture + '"></div>' + fieldsHTML;
@@ -143,6 +144,10 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
     if (this.props_.times) {
         fieldsHTML = fieldsHTML + '<div class="times">' + this.props_.times + '</div>';
     }
+  
+if(this.props_.hours) {
+    fieldsHTML = fieldsHTML + '<div class="hours">' + this.props_.hours + '</div>';
+}
     if (this.props_.featureList) {
         featuresHTML = '';
 
@@ -164,6 +169,7 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
         fieldsHTML = fieldsHTML + '<div class="featurelist">' + featuresHTML + '</div>';
     }
     return fieldsHTML;
+
 }
 
 //////////////////////////////////////////////////
@@ -224,6 +230,20 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                         price_level: result.price_level
 
                     };
+                  
+                  if (result.price_level) {
+            if (result.price_level == "1" || result.price_level == "0") {
+                props.price = "$";
+            } else if (result.price_level == "2") {
+                props.price = "$$";
+            } else if (result.price_level == "3") {
+                props.price = "$$$";
+            } else {
+                props.price = "$$$$";
+            }
+        } else {
+            props.price = "This location does not provide price level service ";
+        }
 
                     if (details) {
                         props.phone = details.formatted_phone_number;
@@ -232,6 +252,15 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                     if (result.photos) {
                         props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
                     }
+                  
+                          if (result.opening_hours) {
+            console.log("1");
+            if (result.opening_hours.open_now == true) {
+                props.hours = "It is open now";
+            } else if (result.opening_hours.open_now == false) {
+                props.hours = "It is closed now";
+            }
+        }
 
                     if (snapshot.val() !== null) {
                         props.times = snapshot.val().times.starttime + " - " + snapshot.val().times.endtime;
@@ -264,6 +293,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
             }
             var database = firebase.database();
             database.ref("/happyHowlerData/places").child(result.place_id).once("value", databaseCallback);
+
 
 
         }
