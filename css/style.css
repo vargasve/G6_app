@@ -5,7 +5,7 @@
 .container {
     text-align: center;
 }
-
+body.placesform .container { text-align: left; }
 h1 {
     size: 125px;
 }
@@ -57,12 +57,11 @@ h1 {
 /* MESSY AND TEMPORARY */
 
 body {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #map-canvas,
 #panel {
-    height: 100%;
 }
 
 #map-canvas {
@@ -196,8 +195,9 @@ p.attribution a {
 }
 
 .map-wrapper {
-    position: relative;
+    position: fixed;
     overflow: auto;
+    max-height: 650px;
 }
 
 .row.info-wrapper {
