@@ -48,7 +48,7 @@
 
 </head>
 
-<body>
+<body class="placesform">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -73,7 +73,7 @@
     <div id="map-canvas"></div> -->
 
     <!-- site container -->
-    <div class="container-fluid">
+    <div class="container">
         <!-- logo header -->
         <header>
             <h1>
@@ -104,61 +104,64 @@
                                 <label for="place-hh-end">Happy Hour End</label>
                                 <input type="time" class="form-control form-control-sm" id="place-hh-end" placeholder="7:00PM">
                             </div>
-                        
-                        <h3>Categories:</h3>
-<div class="form-group col-xs-12">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="input-beer" value="option1">
-                            <label class="form-check-label" for="input-beer">Beer</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="input-wine" value="option2">
-                            <label class="form-check-label" for="input-wine">Wine</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="input-food" value="option3">
-                            <label class="form-check-label" for="input-food">Food</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="input-hookah" value="option4">
-                            <label class="form-check-label" for="input-hookah">Hookah</label>
-                        </div>
-                    </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                                <label for="place-notes">Happy Hour End</label>
+
+                            <h3>Categories:</h3>
+                            <div class="form-group col-xs-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-beer" value="option1">
+                                    <label class="form-check-label" for="input-beer">Beer</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-wine" value="option2">
+                                    <label class="form-check-label" for="input-wine">Wine</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-food" value="option3">
+                                    <label class="form-check-label" for="input-food">Food</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-hookah" value="option4">
+                                    <label class="form-check-label" for="input-hookah">Hookah</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-dog" value="option4">
+                                    <label class="form-check-label" for="input-dog">Dog</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <label for="place-notes">Leave a Comment:</label>
                                 <textarea type="textbox" rows="4" class="form-control form-control-sm" id="place-notes" placeholder="Add notes here"></textarea>
                             </div>
 
-                    </div>
-                    <div class="form-group col-lg-2 col-sm-12 d-flex align-items-end flex-column">
-                            <button class="btn btn-primary btn-sm btn-block mt-auto" type="submit" id="submit">Submit</button>
                         </div>
+                        <button class="btn btn-primary btn-sm btn-block mt-auto" type="submit" id="submit">Submit</button>
+
                     </form>
 
 
                     <div id="data-wrapper" class="table-responsive">
-                            <h2>Stuff We Added</h2>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Place ID</th>
-                                        <th>Happy Hour Start</th>
-                                        <th>Happy Hour End</th>
-                                        <th>Beer?</th>
-                                        <th>Wine?</th>
-                                        <th>Food?</th>
-                                        <th>Hookah?</th>
-                                        <th>Dog?</th>
-                                        <th>Comments</th>
+                        <h2>Stuff We Added</h2>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Place ID</th>
+                                    <th>Happy Hour Start</th>
+                                    <th>Happy Hour End</th>
+                                    <th>Beer?</th>
+                                    <th>Wine?</th>
+                                    <th>Food?</th>
+                                    <th>Hookah?</th>
+                                    <th>Dog?</th>
+                                    <th>Comments</th>
 
-        
-                                    </tr>
-                                </thead>
-                                <tbody id="hhdata">
-        
-                                </tbody>
-                            </table>
-                        </div>
+
+                                </tr>
+                            </thead>
+                            <tbody id="hhdata">
+
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
 
