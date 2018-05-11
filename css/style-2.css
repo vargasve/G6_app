@@ -1,0 +1,73 @@
+html, body, #map-canvas {
+    height: 100%;
+    width: 100%;
+}
+
+body { font-family: 'Montserrat', sans-serif; }
+
+.navbar {
+    background-color: black;
+    z-index: 5;
+}
+
+.map-wrapper {
+
+    position: fixed;
+    height: 800px;
+    bottom: 0;
+    overflow: auto;
+}
+/*
+#map_canvas iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}*/
+
+/*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
+/* END OF TEMP STYLES */
+
+/* List */
+
+ul.store-list  { padding-left: 0;}
+
+.storelocator-panel .store-list li,
+.storelocator-panel .directions-panel {
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+    height: 130px;
+    margin: 15px;
+}
+
+.store ul { padding-left: 0; }
+.store .title { font-weight: 700; text-transform: uppercase; }
+.store .address { font-size: 0.7em; }
+
+
+.store .picture {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    overflow: hidden;
+    /* width: 100px; */
+    width:  auto;
+    float: left; margin-right: 15px;
+}
+/*.picture img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}*/
+/* Or try this but might not work on Edge */
+.picture img {
+    object-fit: cover;
+       width: 120px;
+       height: 120px;
+    }
+    
+   
+  
+  a { display: block; }

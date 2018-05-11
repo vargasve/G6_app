@@ -2,8 +2,7 @@
 
 var map;
 var infowindow;
-var searchwords = "happy+hour";
-var bars = [];
+//var searchwords = "happy+hour";
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 var labelIndex = 0;
 var markers = [];
@@ -118,11 +117,6 @@ google.maps.event.addDomListener(window, 'load', function () {
 
 //////////////////////////////////////////////////
 
-/**
- * Creates a new PlacesDataSource.
- * @param {google.maps.Map} map
- * @constructor
- */
 function PlacesDataSource(map) {
     this.service_ = new google.maps.places.PlacesService(map);
     this.details_cache_ = {};
@@ -193,8 +187,6 @@ PlacesDataSource.prototype.getFeatures = function () {
 PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var service = this.service_;
     var details_cache = this.details_cache_;
-    console.log(features);
-
 
     var beerCall = this.FEATURES_.getById('Beer-YES');
     var wineCall = this.FEATURES_.getById('Wine-YES');
@@ -206,7 +198,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     service.search({
         bounds: bounds,
         type: ['restaurant'],
-        keyword: searchwords
+        //keyword: searchwords
 
     }, function (results, search_status) {
         var stores = [];
@@ -254,7 +246,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                     }
 
                     if (result.opening_hours) {
-                        console.log("1");
                         if (result.opening_hours.open_now == true) {
                             props.hours = "It is open now";
                         } else if (result.opening_hours.open_now == false) {
@@ -299,3 +290,4 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
     });
 };
+
