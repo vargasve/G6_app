@@ -42,20 +42,21 @@ h1 {
     background-color: purple;
 }
 
-#map {
+/*#map {
     border: palevioletred;
     border-style: double;
     padding: 10px;
-}
+}*/
 
-#hhInfo {
+/*#hhInfo {
     border: dodgerblue;
     border-style: dotted;
-    /*padding: 10px;*/
-}
+    padding: 10px;
+}*/
 
 /* MESSY AND TEMPORARY */
 
+/*
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -64,13 +65,9 @@ body {
 #panel {
 }
 
-#map-canvas {
-    min-height: 800px;
-}
 
 #panel {
-    /* float: left; */
-    /*margin-right: 10px;*/
+
 }
 
 #panel .feature-filter label {
@@ -127,7 +124,6 @@ p.attribution a {
 }
 
 .storelocator-panel .location-search input {
-   /* width: 75%; */
 }
 
 .storelocator-panel .location-search h4 {
@@ -195,20 +191,31 @@ p.attribution a {
 }
 
 .map-wrapper {
-    position: fixed;
-    overflow: auto;
-    max-height: 650px;
-}
+    /*position: fixed;
+    overflow: auto;*/
+   /* max-height: 650px;
+} */
 
-.row.info-wrapper {
-    /*position: absolute;
-    top: 0;
-    right: 0;
+
+
+
+html, body, #map_canvas {
+    height: 100%;
     width: 100%;
-    padding: 0;
-    margin: 0 auto;*/
+    margin: 0px;
 }
 
+#map_canvas {
+    position: relative;
+}
+
+#map_canvas iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 /* END OF TEMP STYLES */
