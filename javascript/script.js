@@ -1,6 +1,5 @@
 // Grabbing and populating favorites based on map boundaries
 
-var map;
 var infowindow;
 //var searchwords = "happy+hour";
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -9,102 +8,55 @@ var markers = [];
 
 var austin = { lat: 30.2672, lng: -97.7431 };
 
-google.maps.event.addDomListener(window, 'load', function () {
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+// Initializes the map and its styles
+function initMap() {
+    var map_options = {
+        zoom: 18,
+        clickableIcons: false,
         center: austin,
-        zoom: 15,
-        styles: [
-            {
-                "featureType": "landscape.natural",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "color": "#e0efef"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "hue": "#1900ff"
-                    },
-                    {
-                        "color": "#c0e8e8"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "lightness": 100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit.line",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "lightness": 700
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#7dcdcd"
-                    }
-                ]
-            }
-        ],
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    $.get("mapstyles.js", function (data) {
+        if (data) {
+            map_options.styles = JSON.parse(data);
+        }
     });
 
+    var map_document = document.getElementById('map-canvas');
+    var map = new google.maps.Map(map_document, map_options);
+
+    initPanel(map);
+}
+// Initializes the sidebar panel
+function initPanel(map) {
     var panelDiv = document.getElementById('panel');
 
     var data = new PlacesDataSource(map);
 
-    // var view = new storeLocator.View(map, data);
-
     var view = new storeLocator.View(map, data, {
-
         features: data.getFeatures()
-    })
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: "",
+    });
 
     var markerSize = new google.maps.Size(24, 24);
     view.createMarker = function (store) {
-        return new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: store.getLocation(),
             /*   icon: new google.maps.MarkerImage(store.getDetails().icon, null, null,
                    null, markerSize) */
         });
+
+       /* google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.open(map, this);
+        });
+
+        google.maps.event.addListener(marker, 'mouseover', function () {
+            infoWindow.open(map, this);
+        });*/
+        return marker;
     };
 
     //////////////////////////////////////////////////
@@ -113,7 +65,11 @@ google.maps.event.addDomListener(window, 'load', function () {
         view: view,
         featureFilter: true
     });
-});
+}
+
+
+
+
 
 //////////////////////////////////////////////////
 
@@ -121,6 +77,7 @@ function PlacesDataSource(map) {
     this.service_ = new google.maps.places.PlacesService(map);
     this.details_cache_ = {};
 }
+
 
 //////////////////////////////////////////////////
 
@@ -167,15 +124,13 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
 }
 
 //////////////////////////////////////////////////
-
+// Feature toggles
 PlacesDataSource.prototype.FEATURES_ = new storeLocator.FeatureSet(
     new storeLocator.Feature('Beer-YES', 'Beer'),
     new storeLocator.Feature('Wine-YES', 'Wine'),
     new storeLocator.Feature('Food-YES', 'Food'),
     new storeLocator.Feature('Hookah-YES', 'Hookah'),
     new storeLocator.Feature('Dog-YES', 'Dog')
-
-
 );
 
 PlacesDataSource.prototype.getFeatures = function () {
@@ -187,13 +142,13 @@ PlacesDataSource.prototype.getFeatures = function () {
 PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var service = this.service_;
     var details_cache = this.details_cache_;
+    var database = firebase.database();
 
     var beerCall = this.FEATURES_.getById('Beer-YES');
     var wineCall = this.FEATURES_.getById('Wine-YES');
     var foodCall = this.FEATURES_.getById('Food-YES');
     var hookahCall = this.FEATURES_.getById('Hookah-YES');
     var dogCall = this.FEATURES_.getById('Dog-YES')
-
 
     service.search({
         bounds: bounds,
@@ -203,67 +158,79 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     }, function (results, search_status) {
         var stores = [];
 
+        if (!results) {
+            return;
+        }
+
         var callbacksRemaining = results.length;
 
-        for (var i = 0, result; result = results[i]; i++) {
+        for (var i = 0; results[i]; i++) {
+            var result = results[i];
+
+            if (!result) {
+                if (--callbacksRemaining <= 0) {
+                    console.log('invoking stores callback');
+                    callback(stores);
+                }
+                continue;
+            }
+
             function detailsCallback(details, details_status, snapshot) {
-                if (result) {
-
-                    if (details && details_status != 'CACHED') {
-                        details_cache[result.place_id] = details;
-                    }
-
-                    var props = {
-                        title: result.name,
-                        address: result.vicinity,
-                        types: result.types,
-                        //icon: result.icon,
-                        hours: result.opening_hours,
-                        price_level: result.price_level
-
-                    };
-
-                    if (result.price_level) {
-                        if (result.price_level == "1" || result.price_level == "0") {
-                            props.price_level = "$";
-                        } else if (result.price_level == "2") {
-                            props.price_level = "$$";
-                        } else if (result.price_level == "3") {
-                            props.price_level = "$$$";
-                        } else {
-                            props.price_level = "$$$$";
-                        }
-                    } else {
-                        props.price_level = "This location does not provide price level service ";
-                    }
-
-                    if (details) {
-                        props.phone = details.formatted_phone_number;
-                    }
-
-                    if (result.photos) {
-                        props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
-                    }
-
-                    if (result.opening_hours) {
-                        if (result.opening_hours.open_now == true) {
-                            props.hours = "It is open now";
-                        } else if (result.opening_hours.open_now == false) {
-                            props.hours = "It is closed now";
-                        }
-                    }
-
-                    if (snapshot.val() !== null) {
-                        props.times = snapshot.val().times.starttime + " - " + snapshot.val().times.endtime;
-                        props.featureList = snapshot.val().features;
-                    }
-
-                    var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
-
-                    stores.push(store);
+                if (details && details_status != 'CACHED') {
+                    details_cache[result.place_id] = details;
                 }
 
+                var props = {
+                    title: result.name,
+                    address: result.vicinity,
+                    types: result.types,
+                    //icon: result.icon,
+                    hours: result.opening_hours,
+                    price_level: result.price_level
+
+                };
+
+                if (result.price_level) {
+                    if (result.price_level == "1" || result.price_level == "0") {
+                        props.price_level = "$";
+                    } else if (result.price_level == "2") {
+                        props.price_level = "$$";
+                    } else if (result.price_level == "3") {
+                        props.price_level = "$$$";
+                    } else {
+                        props.price_level = "$$$$";
+                    }
+                } else {
+                    props.price_level = "This location does not provide price level service ";
+                }
+
+                if (details) {
+                    props.phone = details.formatted_phone_number;
+                }
+
+                if (result.photos) {
+                    props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
+                }
+
+                if (result.opening_hours) {
+                    if (result.opening_hours.open_now == true) {
+                        props.hours = "It is open now";
+                    } else if (result.opening_hours.open_now == false) {
+                        props.hours = "It is closed now";
+                    }
+                }
+
+                if (snapshot.val() !== null) {
+                    props.times = snapshot.val().times.starttime + " - " + snapshot.val().times.endtime;
+                    props.featureList = snapshot.val().features;
+                }
+
+                var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
+
+                stores.push(store);
+
                 if (--callbacksRemaining <= 0) {
+                    console.log('invoking stores callback');
                     callback(stores);
                 }
             }
@@ -273,21 +240,19 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                     detailsCallback(details_cache[result.place_id], 'CACHED', snapshot);
                 } else {
                     var request = {
-                        placeId: results[i]['place_id']
+                        placeId: result.place_id
                     };
                     service.getDetails(request, function (details, details_status) {
-
                         detailsCallback(details, details_status, snapshot)
-
                     });
                 }
             }
-            var database = firebase.database();
+
             database.ref("/happyHowlerData/places").child(result.place_id).once("value", databaseCallback);
-
-
-
         }
     });
 };
 
+
+
+google.maps.event.addDomListener(window, 'load', initMap);
