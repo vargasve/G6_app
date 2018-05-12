@@ -206,12 +206,19 @@ $(document).ready(function(){
 
 
 
-  var lyftURL = "https://lyft.com/ride?id=lyft&pickup[latitude]="+pickUpLatitude+"&pickup[longitude]=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination[latitude]="+destinationLatitude+"destination[longitude]=-" + destinationLongitude;
+  var lyftURL = "https://lyft.com/ride?id=lyft&pickup="+pickUpLatitude+"&pickup=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination="+destinationLatitude+"destination=-" + destinationLongitude;
+
+  console.log(lyftURL)
 
   var aTag = $("<a>");
   var imgLogo = $("<img src=./images/Lyft_Logo_Pink.png>");
-  aTag.append(imgLogo);
-  aTag.attr("href", lyftURL);
+//aTag.append(imgLogo);
+  aTag.attr("href", "https://lyft.com/ride?id=lyft&pickup=30.28715&pickup=-97.72886&partner=bKqAiCCrjrJu&destination=30.2646591destination=-97.7331236");
+  aTag.text("hello");
   $("#lyftButton").append(aTag);
   console.log("working");
 });
+
+// https://lyft.com/ride?id=lyft&pickup[latitude]=30.28715&pickup[longitude]=-97.72886&partner=bKqAiCCrjrJu&destination[latitude]=30.2646591destination[longitude]=-97.7331236
+
+// https://ride.lyft.com/request?destination=432%20Octavia%20Street%2C%20San%20Francisco%2C%20California%2094102%2C%20United%20States@37.7763592,-122.4242038&partner=bKqAiCCrjrJu&pickup=106%20Albion%20Street%2C%20San%20Francisco%2C%20California%2094110%2C%20United%20States@37.764728,-122.422999&rideType=lyft
