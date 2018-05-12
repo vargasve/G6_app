@@ -12,8 +12,9 @@ var austin = { lat: 30.2672, lng: -97.7431 };
 function initMap() {
     var map_options = {
         center: austin,
-
-        zoom: 15,
+        gestureHandling: "none",
+        zoomControl: false,
+        zoom: 16,
         styles: [
             {
                 "featureType": "landscape.natural",
