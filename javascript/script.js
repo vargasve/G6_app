@@ -314,3 +314,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
     });
 };
+
+
+google.maps.event.addDomListener(window, 'load', initMap);
