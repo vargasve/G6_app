@@ -1,20 +1,19 @@
 // Grabbing and populating favorites based on map boundaries
 
-var map;
-var infowindow;
-//var searchwords = "happy+hour";
+var searchwords = "happy+hour";
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 var labelIndex = 0;
 var markers = [];
 
 var austin = { lat: 30.2672, lng: -97.7431 };
 
-google.maps.event.addDomListener(window, 'load', function () {
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: austin,
+// Initializes the map and its styles
+function initMap() {
+    var map_options = {
         zoom: 15,
+        center: austin,
+        /*gestureHandling: "none",*/
         zoomControl: false,
-
         styles: [
             {
                 "featureType": "landscape.natural",
@@ -85,15 +84,19 @@ google.maps.event.addDomListener(window, 'load', function () {
                     }
                 ]
             }
-        ],
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+        ]
+    };
 
+    var map_document = document.getElementById('map-canvas');
+    var map = new google.maps.Map(map_document, map_options);
+
+    initPanel(map);
+}
+// Initializes the sidebar panel
+function initPanel(map) {
     var panelDiv = document.getElementById('panel');
 
     var data = new PlacesDataSource(map);
-
-    // var view = new storeLocator.View(map, data);
 
     var view = new storeLocator.View(map, data, {
 
@@ -107,6 +110,16 @@ google.maps.event.addDomListener(window, 'load', function () {
             /*   icon: new google.maps.MarkerImage(store.getDetails().icon, null, null,
                    null, markerSize) */
         });
+    
+
+       /* google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.open(map, this);
+        });
+
+        google.maps.event.addListener(marker, 'mouseover', function () {
+            infoWindow.open(map, this);
+        });
+        return marker;*/
     };
 
     //////////////////////////////////////////////////
@@ -115,7 +128,7 @@ google.maps.event.addDomListener(window, 'load', function () {
         view: view,
         featureFilter: true
     });
-});
+}
 
 //////////////////////////////////////////////////
 
