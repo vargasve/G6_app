@@ -11,15 +11,83 @@ var austin = { lat: 30.2672, lng: -97.7431 };
 // Initializes the map and its styles
 function initMap() {
     var map_options = {
-        zoom: 15,
         center: austin,
+
+        zoom: 15,
+        styles: [
+            {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#e0efef"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "hue": "#1900ff"
+                    },
+                    {
+                        "color": "#c0e8e8"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 700
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#7dcdcd"
+                    }
+                ]
+            }
+        ]
     };
 
-    $.get("javascript/mapstyles.js", function (data) {
-        if (data) {
-            map_options.styles = JSON.parse(data);
-        }
-    });
+    
 
     var map_document = document.getElementById('map-canvas');
     var map = new google.maps.Map(map_document, map_options);
