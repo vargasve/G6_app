@@ -1,49 +1,58 @@
-.navbar{
+.navbar {
     background-color: black;
-
 }
 
-.container{
+.container {
     text-align: center;
 }
-h1{
+body.placesform .container { text-align: left; }
+h1 {
     size: 125px;
 }
 
-.button{
+.button {
     border: none;
     padding: 10px;
     font-size: 32px;
     margin: 4px;
     border-radius: 50%;
 }
-.btn1{
+
+.btn1 {
     background-color: red;
 }
-.btn2{
+
+.btn2 {
     background-color: orange;
 }
-.btn3{
+
+.btn3 {
     background-color: yellow;
 }
-.btn4{
+
+.btn4 {
     background-color: green;
 }
-.btn5{
+
+.btn5 {
     background-color: blue;
 }
-.btn6{
+
+.btn6 {
     background-color: purple;
 }
-#map{
+
+/*#map {
     border: palevioletred;
     border-style: double;
     padding: 10px;
-}
-#hhInfo{
+}*/
+
+/*#hhInfo {
     border: dodgerblue;
     border-style: dotted;
     padding: 10px;
+<<<<<<< HEAD
 }
 
 #weather {
@@ -58,3 +67,172 @@ img {
     width:100px;
     height:100px;
 }
+=======
+}*/
+
+/* MESSY AND TEMPORARY */
+
+/*
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#map-canvas,
+#panel {
+}
+
+
+#panel {
+
+}
+
+#panel .feature-filter label {
+    width: auto;
+}
+
+p.attribution,
+p.attribution a {
+    color: #666;
+}
+
+.storelocator-panel {
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+.storelocator-panel .store-list {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    width: 100;
+    border: 2px solid #ccc;
+}
+
+.storelocator-panel .store-list li,
+.storelocator-panel .directions-panel {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+}
+
+.storelocator-panel .directions-panel {
+    font-size: 0.8em;
+}
+
+.storelocator-panel .store-list li.store:hover {
+    cursor: pointer;
+    background: #eee;
+}
+
+.storelocator-panel .store-list li.highlighted,
+.storelocator-panel .store-list li.highlighted:hover {
+    background: #ccf;
+}
+
+.storelocator-panel .directions {
+    display: none;
+}
+
+.storelocator-panel .location-search {
+    padding: 30px;
+    background-color: #f1f1f1;
+    border-bottom: 2px solid #ccc;
+}
+
+.storelocator-panel .location-search input {
+}
+
+.storelocator-panel .location-search h4 {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+}
+
+.storelocator-panel .store-list .no-stores {
+    color: grey;
+}
+
+.storelocator-panel .store .features {
+    display: none;
+}
+
+.storelocator-panel .feature-filter {
+    overflow: hidden;
+}
+
+.storelocator-panel .feature-filter label {
+    display: block;
+    font-size: 0.8em;
+    margin: 0 0.4em;
+    float: left;
+}
+
+.store .title {
+    font-weight: bold;
+}
+
+.store .address,
+.store .phone,
+.store .web,
+.store .misc {
+    font-size: 80%;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.store .features {
+    overflow: hidden;
+    color: grey;
+    margin: 0;
+    padding: 0;
+    font-size: 70%;
+    max-width: 250px;
+}
+
+.store .features li {
+    display: inline;
+    float: left;
+    padding-right: 0.8em;
+}
+
+.store .web a {
+    color: green
+}
+
+.store .action {
+    font-size: 0.8em;
+    color: green;
+    margin-right: 0.5em;
+}
+
+.map-wrapper {
+    /*position: fixed;
+    overflow: auto;*/
+   /* max-height: 650px;
+} */
+
+
+
+
+html, body, #map_canvas {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+#map_canvas {
+    position: relative;
+}
+
+#map_canvas iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+/*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
+/* END OF TEMP STYLES */
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814

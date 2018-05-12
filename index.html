@@ -3,9 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="google-signin-client_id" content="30830594769-3nhm6gil4081efvec3v99sos23oj9lnc.apps.googleusercontent.com.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="30830594769-3nhm6gil4081efvec3v99sos23oj9lnc.apps.googleusercontent.com">
 
+
+  <meta name="google-site-verification" content="SKFWHYMhnbOaWTLkjx4V5PB0i9fagncU-nQo2jQqsEQ" />
+  <meta name="google-signin-cookiepolicy" content="single_host_origin">
+  <meta name="google-signin-scope" content="profile email">
   <title>HH</title>
+
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <!-- link to jquery -->
@@ -16,30 +21,40 @@
   <!-- bootstrap responsive link-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- link to google fonts for headers and body -->
+<<<<<<< HEAD
   <link href="https://fonts.googleapis.com/css?family=Kirang+Haerang|Roboto" rel="stylesheet">
 
+=======
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i%7CMontserrat:500,600%7CDomine:400,700" rel="stylesheet">
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
   <!-- link to font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- link to 'flaticon' button pics -->
   <link rel="stylesheet" type="text/css" href="css/font/flaticon.css">
   <!-- link to css stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style-2.css">
 
-
-  
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkickozXN9L10uYmWVfE3KDLfLHbVq44Y&libraries=places&callback=initMap"
-  async defer></script>
+  <script src="javascript/store-locator.min.js"></script>
+  <script src="javascript/database.js"></script>
 
-  <!-- link to javascript -->
   <script src="javascript/script.js"></script>
 
 </head>
 
 <body>
+<<<<<<< HEAD
     <script type="text/javascript">
       jQuery(function($) {
         for(var i=0; i <= 20; i++) 
@@ -48,30 +63,39 @@
     </script>
   <!-- nav bar -->
   <nav class="navbar navbar-inverse">
+=======
+  <nav class="navbar navbar-inverse fixed">
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
           <img src="images/invertedLogo.png" height="50px" width="175px">
         </a>
+<<<<<<< HEAD
       </div>
       <div id="weather">
         
+=======
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
       </div>
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <!-- GOOGLE AUTH HERE -->
 
-      <form class="navbar-form navbar-left" action="/action_page.php">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" name="search">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              Fetch!
-            </button>
-          </div>
-        </div>
-      </form>
+      <p>Sign in with your Google account below.</p>
+      <!-- [START google_button] -->
+
+      <!-- Button that handles sign-in/sign-out -->
+      <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button>
+
+      <!-- END OF GOOGLE AUTH -->
+
+
     </div>
   </nav>
+  <!-- <div id="panel"></div>
+    <div id="map-canvas"></div> -->
+
   <!-- site container -->
+<<<<<<< HEAD
   <div class="container">
     <!-- logo header -->
     <header>
@@ -80,19 +104,35 @@
       </h1>
     </header>
    
+=======
+  <div class="container-fluid map-wrapper">
+    <!-- logo header -->
+    <header>
+      <h1>
+        <!-- <img src="images/logo.png"> -->
+      </h1>
+    </header>
+    <div class="btn-group">
+      <!-- Moved buttons to script -->
+    </div>
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
 
     <!-- search buttons -->
     <div class="row">
-      <!-- map column -->
-      <div class="col-md-8" id="map">
-        <p><br><br><br><br>MAP<br><br><br><br></p>
+      <div class="col-md-4">
+        <div id="panel">
+        </div>
+      </div>
 
+      <div class="col-md-8 offset-lg-4 map-wrapper" style="position: fixed">
+        <div id="map-canvas">
+          <div id="map"></div>
+        </div>
 
-        <div id="map_div" style="height: 600px;"></div>
-        
 
 
       </div>
+<<<<<<< HEAD
     </div>
     <!-- container for map and HH info -->
 
@@ -138,6 +178,13 @@
     Powered by Dark Sky --- https://darksky.net/poweredby/
   </footer>
 
+=======
+    </div>
+  </div>
+  <!-- container for map and HH info -->
+
+
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
 </body>
 
 </html>
