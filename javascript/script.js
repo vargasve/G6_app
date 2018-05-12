@@ -12,7 +12,7 @@ function initMap() {
     var map_options = {
         zoom: 15,
         center: austin,
-        gestureHandling: "none",
+        /*gestureHandling: "none",*/
         zoomControl: false,
         styles: [
             {
