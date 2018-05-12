@@ -52,6 +52,22 @@ h1 {
     border: dodgerblue;
     border-style: dotted;
     padding: 10px;
+<<<<<<< HEAD
+}
+
+#weather {
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: .75rem;
+}
+
+img {
+    width:100px;
+    height:100px;
+}
+=======
 }*/
 
 /* MESSY AND TEMPORARY */
@@ -219,3 +235,4 @@ html, body, #map_canvas {
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 /* END OF TEMP STYLES */
+>>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
