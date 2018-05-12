@@ -1,7 +1,6 @@
 // Grabbing and populating favorites based on map boundaries
 
-var infowindow;
-//var searchwords = "happy+hour";
+var searchwords = "happy+hour";
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 var labelIndex = 0;
 var markers = [];
@@ -100,12 +99,9 @@ function initPanel(map) {
     var data = new PlacesDataSource(map);
 
     var view = new storeLocator.View(map, data, {
-        features: data.getFeatures()
-    });
 
-    var infoWindow = new google.maps.InfoWindow({
-        content: "",
-    });
+        features: data.getFeatures()
+    })
 
     var markerSize = new google.maps.Size(24, 24);
     view.createMarker = function (store) {
@@ -122,8 +118,8 @@ function initPanel(map) {
 
         google.maps.event.addListener(marker, 'mouseover', function () {
             infoWindow.open(map, this);
-        });*/
-        return marker;
+        });
+        return marker;*/
     };
 
     //////////////////////////////////////////////////
@@ -220,7 +216,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     service.search({
         bounds: bounds,
         type: ['restaurant'],
-        //keyword: searchwords
+        keyword: searchwords
 
     }, function (results, search_status) {
         var stores = [];
