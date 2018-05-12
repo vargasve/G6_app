@@ -14,7 +14,7 @@ function initMap() {
         center: austin,
         gestureHandling: "none",
         zoomControl: false,
-        zoom: 16,
+        zoom: 13,
         styles: [
             {
                 "featureType": "landscape.natural",
@@ -88,8 +88,6 @@ function initMap() {
         ]
     };
 
-    
-
     var map_document = document.getElementById('map-canvas');
     var map = new google.maps.Map(map_document, map_options);
 
@@ -111,11 +109,12 @@ function initPanel(map) {
 
     var markerSize = new google.maps.Size(24, 24);
     view.createMarker = function (store) {
-        var marker = new google.maps.Marker({
+        return new google.maps.Marker({
             position: store.getLocation(),
             /*   icon: new google.maps.MarkerImage(store.getDetails().icon, null, null,
                    null, markerSize) */
         });
+    
 
        /* google.maps.event.addListener(marker, 'click', function () {
             infoWindow.open(map, this);
