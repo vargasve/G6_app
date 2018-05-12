@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 
@@ -19,23 +18,52 @@ $.ajax({
    // console.log(response.currently.icon)
    var currentCondition = response.currently.icon
    console.log(currentCondition)
+   
     // Log the resulting object
-    if (currentCondition ==="clear-day"){
+    if (currentCondition === "clear-day" ){
       console.log("working")
       currentCondition = "<img src='./images/climacons-master/SVG/Sun.svg'>"
 
     }
+    else if (currentCondition === "clear-night") {
+      currentCondition = "<img src='./images/climacons-master/SVG/Moon.svg'>"
+    }
  
-
-    
-    
+    else if (currentCondition === "rain") {
+      currentCondition = "<img src='./images/climacons-master/SVG/Cloud-Rain.svg'>"
+    }
+    else if (currentCondition === "snow") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Snow.svg'>"
+    }
+    else if (currentCondition === "sleet") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Hail.svg'>"
+    }
+    else if (currentCondition === "wind") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Hail.svg'>"
+    }
+    else if (currentCondition === "fog") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Fog.svg'>"
+    }
+    else if (currentCondition === "cloudy") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud.svg'>"
+    }
+    else if (currentCondition === "partly-cloudy-day") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Sun.svg'>"
+    }
+   else if (currentCondition === "partly-cloudy-night") {
+      currentCondition = "<img src='.images/climacons-master/SVG/Cloud-Moon.svg'>"
+    }
   
-
+    else {
+      currentCondition="<img src='.images/climacons-master/SVG/Thermometer.svg'>"
+    };
+    
     $("#weather").html(currentCondition + response.currently.apparentTemperature + "&#x2109;")
+
+    
 
   })
 
-  
 var config = {
     apiKey: "AIzaSyAx2wPUKX8AG232jWrO8DPSzavhcEAm2eM",
     authDomain: "happyhowler-58dad.firebaseapp.com",
@@ -45,9 +73,7 @@ var config = {
     messagingSenderId: "30830594769"
   };
   firebase.initializeApp(config);
-=======
 // Grabbing and populating favorites based on map boundaries
->>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
 
 var map;
 var infowindow;
@@ -164,36 +190,6 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
 });
 
-<<<<<<< HEAD
-
-$(document).ready(function(){
-
-
-  var pickUpLatitude = 30.28715;
-  var pickUpLongitude = 97.72886 ;
-  var destinationLatitude = 30.2646591;
-  var destinationLongitude = 97.7331236;
-
-
-
-
-  var lyftURL = "https://lyft.com/ride?id=lyft&pickup="+pickUpLatitude+"&pickup=-"+pickUpLongitude+"&partner=bKqAiCCrjrJu&destination="+destinationLatitude+"destination=-" + destinationLongitude;
-
-  console.log(lyftURL)
-
-  var aTag = $("<a>");
-  var imgLogo = $("<img src=./images/Lyft_Logo_Pink.png>");
-//aTag.append(imgLogo);
-  aTag.attr("href", "https://lyft.com/ride?id=lyft&pickup=30.28715&pickup=-97.72886&partner=bKqAiCCrjrJu&destination=30.2646591destination=-97.7331236");
-  aTag.text("hello");
-  $("#lyftButton").append(aTag);
-  console.log("working");
-});
-
-// https://lyft.com/ride?id=lyft&pickup[latitude]=30.28715&pickup[longitude]=-97.72886&partner=bKqAiCCrjrJu&destination[latitude]=30.2646591destination[longitude]=-97.7331236
-
-// https://ride.lyft.com/request?destination=432%20Octavia%20Street%2C%20San%20Francisco%2C%20California%2094102%2C%20United%20States@37.7763592,-122.4242038&partner=bKqAiCCrjrJu&pickup=106%20Albion%20Street%2C%20San%20Francisco%2C%20California%2094110%2C%20United%20States@37.764728,-122.422999&rideType=lyft
-=======
 //////////////////////////////////////////////////
 
 function PlacesDataSource(map) {
@@ -370,4 +366,3 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     });
 };
 
->>>>>>> de0654889aa6e480d7cd9ec7c4f38444e0394814
