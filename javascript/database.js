@@ -55,6 +55,7 @@ $(document).ready(function () {
         // Pass through input admin form data
 
         var hhID = $("#place-id").val().trim();
+        var hhDays = $("#place-hh-days").val().trim();
         var hhStart = $("#place-hh-start").val().trim();
         var hhEnd = $("#place-hh-end").val().trim();
         var hhBeer = $("#input-beer").prop("checked");
@@ -77,6 +78,7 @@ $(document).ready(function () {
                 "dog"    : !!hhDog,
         },
             "times" : {
+                "days": hhDays,
                 "starttime" : hhStart,
                 "endtime"   : hhEnd,
             },
@@ -88,6 +90,7 @@ $(document).ready(function () {
 
     database.ref("/happyHowlerData/places").on("child_added", function (childSnapshot) {
         var hhID = childSnapshot.key;
+        var hhDays = childSnapsnot.val().times.days;
         var hhStart = childSnapshot.val().times.starttime;
         var hhEnd = childSnapshot.val().times.endtime;
         var hhBeer = childSnapshot.val().features.beer;
@@ -101,6 +104,7 @@ $(document).ready(function () {
         // Add to personal data table
         var newRow = $("<tr>").attr("id", "hhrow-" + hhID);
         var hhIDDisplay = $("<td>").text(hhID);
+        var hhDaysDisplay = $("<td>").text(hhDays)
         var hhStartDisplay = $("<td>").text(hhStart);
         var hhEndDisplay = $("<td>").text(hhEnd);
         var hhBeerDisplay = $("<td>").text(hhBeer);
@@ -110,7 +114,7 @@ $(document).ready(function () {
         var hhHookahDisplay = $("<td>").text(hhHookah);
         var hhCommentsDisplay = $("<td>").text(hhComment);
 
-        newRow.append(hhIDDisplay, hhStartDisplay, hhEndDisplay, hhBeerDisplay, hhWineDisplay, hhFoodDisplay, hhDogDisplay, hhHookahDisplay, hhCommentsDisplay);
+        newRow.append(hhIDDisplay, hhDaysDisplay, hhStartDisplay, hhEndDisplay, hhBeerDisplay, hhWineDisplay, hhFoodDisplay, hhDogDisplay, hhHookahDisplay, hhCommentsDisplay);
         $("#hhdata").append(newRow);
 
     });
