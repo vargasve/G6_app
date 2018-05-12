@@ -11,12 +11,11 @@ var austin = { lat: 30.2672, lng: -97.7431 };
 // Initializes the map and its styles
 function initMap() {
     var map_options = {
-        zoom: 18,
-        clickableIcons: false,
+        zoom: 15,
         center: austin,
     };
 
-    $.get("mapstyles.js", function (data) {
+    $.get("javascript/mapstyles.js", function (data) {
         if (data) {
             map_options.styles = JSON.parse(data);
         }
