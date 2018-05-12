@@ -131,9 +131,6 @@ function initPanel(map) {
 }
 
 
-
-
-
 //////////////////////////////////////////////////
 
 function PlacesDataSource(map) {
@@ -174,6 +171,9 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
         if (this.props_.featureList.food) {
             featuresHTML += '<p><b>FOOD</b></p>';
         }
+        if (this.props_.featureList.cocktails) {
+            featuresHTML += '<p><b>COCKTAILS</b></p>';
+        }
         if (this.props_.featureList.hookah) {
             featuresHTML += '<p><b>HOOKAH</b></p>';
         }
@@ -212,6 +212,9 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var foodCall = this.FEATURES_.getById('Food-YES');
     var hookahCall = this.FEATURES_.getById('Hookah-YES');
     var dogCall = this.FEATURES_.getById('Dog-YES')
+
+       // props.features with an array FEATURES_
+
 
     service.search({
         bounds: bounds,
