@@ -185,6 +185,7 @@ li.no-stores:after {
     background-color: white;
     display: block;
 }
+.search-filters i:before:hover { background-color: red; }
 
 
 #beer-check {  transition: transform .2s;
