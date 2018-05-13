@@ -219,8 +219,9 @@ li.no-stores:after {
 
 #quickstart-account-details {display: none; }
 
-#fav-check i {display: none;}
-#fav-check i.loggedin { display: block; }
+.search-filters label:nth-Child(14) i {display: none;}
+.search-filters label:nth-Child(14) i.loggedin { display: block; }
+
 
 /* Footer -------------------------------------------------- */
 
