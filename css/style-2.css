@@ -7,6 +7,8 @@ body,
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
+    background-size: cover;
 }
 
 h1 span {
@@ -14,25 +16,9 @@ h1 span {
 }
 
 .navbar {
-   /* background-color: #7dcdcd;*/
+    /* background-color: #7dcdcd;*/
     z-index: 5;
 }
-
-.map-wrapper {
-    /* position: fixed;
-    height: 800px;
-    bottom: 0;
-    overflow: auto;*/
-}
-
-/*
-#map_canvas iframe {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-}*/
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 
@@ -243,14 +229,14 @@ li.no-stores:after {
     border-radius: 0;
     transition: all 0.3s ease-out;
     height: 60px;
-   /* background-color: rgba(255, 255, 255, 0)*/
+    background-color: rgba(255, 255, 255, 0)
 }
 
 .navbar.scrolled {
     background-color: #fff !important;
     transition: background-color 200ms linear;
-  }
-  
+}
+
 /*.affix {
     position: fixed;
     top: 0;
@@ -266,67 +252,83 @@ li.no-stores:after {
     background-size: cover;
 }
 */
-.parallax { background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
-    background-size: cover;}
+
+
 .parallax__group {
     position: relative;
     height: 100vh;
     transform-style: preserve-3d;
-  }
+}
 
- .parallax {
+.parallax {
     perspective-origin-x: 100%;
-
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-  }
-  .parallax__layer {
-    transform-origin-x: 100%;
+}
 
+.parallax__layer {
+    transform-origin-x: 100%;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-  }
-  .parallax__layer--base {
+}
+
+.parallax__layer--base {
     transform: translateZ(0);
-  }
-  .parallax__layer--back {
+}
+
+.parallax__layer--back {
     transform: translateZ(-1px);
-  }
+}
 
 .panelwrap {
-  height: 100%;
+    height: 100%;
     position: fixed;
-    overflow: auto; }
+    overflow: auto;
+    padding-top: 100px;
+}
 
-    .container-fluid.bottom { margin-top: 46px;}
+.map-wrapper {
+    position: fixed;
+    height: 800px;
+    bottom: 0;
+    overflow: auto;
+}
 
+#map_canvas iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
 
-    .map-wrapper {
-        position: fixed;
-        height: 800px;
-        bottom: 0;
-        overflow: auto;
-    }
+/*#description {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+*/
+
+#description {
+    text-align: left;
     
+}
 
-    #map_canvas iframe {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-    }
+#description h2 { text-transform: uppercase; font-size: 2.5em; color: #fff; }
+#description .button {}
+.billboard { margin-top: 100px; }
 
+#description p { color: #fff; font-family: 'Roboto', sans-serif; line-height: 1.8em;}
 
-    #description { position: relative; top: 50%; left: 50%; }
+.pupper { width: 80%; padding-top: 200px; }
 
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
-  
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
 /* */
 
 /****/
