@@ -107,14 +107,6 @@ function initMap() {
             map.setCenter(pos);
             map.setZoom(15);
 
-            //Plot marker
-            if (showmidmarker) {
-                if (midmarker) {
-                    midmarker.setMap(null);
-                }
-                midmarker = new google.maps.Marker({ position: pos, map: map, icon: markericon });
-            }
-
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
