@@ -33,9 +33,9 @@ function initApp() {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // [START_EXCLUDE]
-            //   document.getElementById('quickstart-account-details').textContent = token.displayName;
+            document.getElementById('quickstart-account-details').textContent = token.displayName;
         } else {
-            //   document.getElementById('quickstart-account-details').textContent = 'null';
+            document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
         }
         // The signed-in user info.
@@ -72,20 +72,20 @@ function initApp() {
             var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
             // [START_EXCLUDE]
-            //   document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
             var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            //signinStuff.classList.add('qs-sign-out'); 
-            // document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-            // document.getElementById('quickstart-account-details').textContent = displayName;
+            signinStuff.classList.add('qs-sign-out'); 
+            document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+            document.getElementById('quickstart-account-details').textContent = displayName;
 
             // [END_EXCLUDE]
         } else {
             // User is signed out.
             // [START_EXCLUDE]
-            //            document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+                        document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
-            //document.getElementById('quickstart-account-details').textContent = 'null';
-            // document.getElementById('quickstart-oauthtoken').textContent = 'null';
+            document.getElementById('quickstart-account-details').textContent = 'null';
+            document.getElementById('quickstart-oauthtoken').textContent = 'null';
             // [END_EXCLUDE]
         }
         // [START_EXCLUDE]

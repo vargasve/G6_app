@@ -4,13 +4,17 @@ var searchwords = "happy+hour";
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 var labelIndex = 0;
 var markers = [];
+var infoWindow;
 
 var austin = { lat: 30.2672, lng: -97.7431 };
 
 // Initializes the map and its styles
 function initMap() {
+
+    var map_document = document.getElementById('map-canvas');
+
     var map_options = {
-        zoom: 8,
+        zoom: 15,
         center: austin,
         /*gestureHandling: "none",*/
         zoomControl: false,
@@ -20,7 +24,7 @@ function initMap() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "visibility": "off"
                     },
                     {
                         "color": "#e0efef"
@@ -32,7 +36,7 @@ function initMap() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "visibility": "off"
                     },
                     {
                         "hue": "#1900ff"
@@ -68,7 +72,7 @@ function initMap() {
                 "elementType": "geometry",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "visibility": "off"
                     },
                     {
                         "lightness": 700
@@ -87,11 +91,57 @@ function initMap() {
         ]
     };
 
-    var map_document = document.getElementById('map-canvas');
     var map = new google.maps.Map(map_document, map_options);
+    infoWindow = new google.maps.InfoWindow();
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+            map.setZoom(15);
+
+            //Plot marker
+            if (showmidmarker) {
+                if (midmarker) {
+                    midmarker.setMap(null);
+                }
+                midmarker = new google.maps.Marker({ position: pos, map: map, icon: markericon });
+            }
+
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+
 
     initPanel(map);
 }
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+
+            infoWindow.addListener("mouseover", function () {
+
+        infoWindow.open(map, this);
+    })
+    }
+
+    // end of test
+
+
 // Initializes the sidebar panel
 function initPanel(map) {
     var panelDiv = document.getElementById('panel');
@@ -99,27 +149,20 @@ function initPanel(map) {
     var data = new PlacesDataSource(map);
 
     var view = new storeLocator.View(map, data, {
-
-        features: data.getFeatures()
+        geolocation: true,
+        features: data.getFeatures(),
     })
 
     var markerSize = new google.maps.Size(24, 24);
     view.createMarker = function (store) {
         return new google.maps.Marker({
             position: store.getLocation(),
-            /*   icon: new google.maps.MarkerImage(store.getDetails().icon, null, null,
-                   null, markerSize) */
-        });
-    
 
-       /* google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(map, this);
+
+
         });
 
-        google.maps.event.addListener(marker, 'mouseover', function () {
-            infoWindow.open(map, this);
-        });
-        return marker;*/
+
     };
 
     //////////////////////////////////////////////////
@@ -129,6 +172,7 @@ function initPanel(map) {
         featureFilter: true
     });
 }
+
 
 //////////////////////////////////////////////////
 
@@ -184,25 +228,9 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
 
 }
 
-//////////////////////////////////////////////////
-
-PlacesDataSource.prototype.FEATURES_ = new storeLocator.FeatureSet(
-    new storeLocator.Feature('Beer-YES', 'Beer'),
-    new storeLocator.Feature('Wine-YES', 'Wine'),
-    new storeLocator.Feature('Cocktails-YES', 'Cocktails'),
-    new storeLocator.Feature('Food-YES', 'Food'),
-
-    new storeLocator.Feature('Hookah-YES', 'Hookah'),
-    new storeLocator.Feature('Dog-YES', 'Dog')
-
-
-);
-
-PlacesDataSource.prototype.getFeatures = function () {
-    return this.FEATURES_;
-};
 // check if features.length = 0 if not no firebase if is greater, then look it up in firebase
 // firebase.database 
+
 
 PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var service = this.service_;
@@ -211,17 +239,14 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var beerCall = this.FEATURES_.getById('Beer-YES');
     var wineCall = this.FEATURES_.getById('Wine-YES');
     var cocktailsCall = this.FEATURES_.getById('Cocktails-YES');
-
     var foodCall = this.FEATURES_.getById('Food-YES');
-
     var hookahCall = this.FEATURES_.getById('Hookah-YES');
     var dogCall = this.FEATURES_.getById('Dog-YES')
-
 
     service.search({
         bounds: bounds,
         type: ['restaurant'],
-        //keyword: searchwords
+        //  keyword: searchwords
 
     }, function (results, search_status) {
         var stores = [];
@@ -241,10 +266,8 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                         title: result.name,
                         address: result.vicinity,
                         types: result.types,
-                        //icon: result.icon,
                         hours: result.opening_hours,
                         price_level: result.price_level
-
                     };
 
                     if (result.price_level) {
@@ -289,6 +312,13 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
 
                 if (--callbacksRemaining <= 0) {
                     callback(stores);
+
+                    $("li").click(function () {
+
+                        $(this).parent().prepend($(this));
+                    })
+
+
                 }
             }
 
@@ -314,6 +344,40 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
     });
 };
+
+
+
+
+// Test   
+/*
+storeLocator.View.prototype.highlight().hover(
+function () {
+
+    
+}
+
+);*/
+
+
+//////////////////////////////////////////////////
+
+PlacesDataSource.prototype.FEATURES_ = new storeLocator.FeatureSet(
+    new storeLocator.Feature('Beer-YES', 'Beer'),
+    new storeLocator.Feature('Wine-YES', 'Wine'),
+    new storeLocator.Feature('Cocktails-YES', 'Cocktails'),
+    new storeLocator.Feature('Food-YES', 'Food'),
+
+    new storeLocator.Feature('Hookah-YES', 'Hookah'),
+    new storeLocator.Feature('Dog-YES', 'Dog')
+
+);
+
+PlacesDataSource.prototype.getFeatures = function () {
+    return this.FEATURES_;
+};
+
+
+// Test
 
 
 google.maps.event.addDomListener(window, 'load', initMap);
