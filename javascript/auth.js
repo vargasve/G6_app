@@ -78,6 +78,7 @@ function initApp() {
             //signinStuff.classList.add('qs-sign-out'); 
             document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
             document.getElementById('quickstart-account-details').textContent = displayName;
+            document.getElementById('quickstart-avatar').innerHTML = "<img src='" + photoURL + "'/>";
 
             // [END_EXCLUDE]
         } else {
