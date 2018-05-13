@@ -9,13 +9,9 @@ function toggleSignIn() {
         firebase.auth().signInWithPopup(provider); // Opens a popup window and returns a promise to handle errors.
        
         //firebase.auth().signInWithRedirect(provider);
-
     } else {
-
         firebase.auth().signOut();
-
     }
-
     document.getElementById("quickstart-sign-in").disabled = true;
 
 }
@@ -76,8 +72,10 @@ function initApp() {
             var providerData = user.providerData;
             // [START_EXCLUDE]
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
-            var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            signinStuff.classList.add('qs-sign-out'); 
+            $("#quickstart-sign-in").text('Sign out');
+            $("#quickstart-sign-in").addClass('qs-sign-out');
+            //var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+            //signinStuff.classList.add('qs-sign-out'); 
             document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
             document.getElementById('quickstart-account-details').textContent = displayName;
 
