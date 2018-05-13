@@ -3,9 +3,12 @@ function toggleSignIn() {
 
         var provider = new firebase.auth.GoogleAuthProvider();
 
-        provider.addScope('https://www.googleapis.com/auth/plus.login');
-
-        firebase.auth().signInWithRedirect(provider);
+        provider.addScope("profile");
+        provider.addScope("email");
+        provider.addScope("https://www.googleapis.com/auth/plus.me");
+        firebase.auth().signInWithPopup(provider); // Opens a popup window and returns a promise to handle errors.
+       
+        //firebase.auth().signInWithRedirect(provider);
 
     } else {
 
@@ -13,7 +16,7 @@ function toggleSignIn() {
 
     }
 
-    document.getElementById('quickstart-sign-in').disabled = true;
+    document.getElementById("quickstart-sign-in").disabled = true;
 
 }
 
@@ -82,7 +85,7 @@ function initApp() {
         } else {
             // User is signed out.
             // [START_EXCLUDE]
-                        document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
             document.getElementById('quickstart-account-details').textContent = 'null';
             document.getElementById('quickstart-oauthtoken').textContent = 'null';
