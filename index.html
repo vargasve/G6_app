@@ -21,7 +21,7 @@
   <!-- bootstrap responsive link-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- link to google fonts for headers and body -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i%7CMontserrat:500,600%7CDomine:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:200,400i%7CMontserrat:100,200,500,600" rel="stylesheet">
   <!-- link to font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- link to 'flaticon' button pics -->
@@ -62,24 +62,23 @@
       </div>
       <!-- GOOGLE AUTH HERE -->
       <!-- [START google_button] -->
-<div id="quickstart-account-details"></div>
-<div id="quickstart-sign-in-status"></div>
-<div id="quickstart-oauthtoken"></div>
-<div id="quickstart-avatar"></div>
 
-      <!-- Button that handles sign-in/sign-out -->
-      <div id="quickstart-sign-in"></div>
-     
-     <!-- <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button> -->
+      <div class="d-flex justify-content-end align-items-center">
+        <div id="quickstart-account-details"></div>
+        <div id="quickstart-sign-in-status"></div>
+        <div id="quickstart-oauthtoken"></div>
+        <div id="quickstart-avatar"></div>
 
-      <!-- END OF GOOGLE AUTH -->
+        <!-- Button that handles sign-in/sign-out -->
+        <button id="quickstart-sign-in"></button>
 
+        <!-- <button disabled class="g-signin2" id="quickstart-sign-in">Sign in with Google</button> -->
+
+        <!-- END OF GOOGLE AUTH -->
+      </div>
 
     </div>
   </nav>
-  <!-- <div id="panel"></div>
-    <div id="map-canvas"></div> -->
-
   <!-- site container -->
   <div class="container-fluid map-wrapper">
     <!-- logo header -->
@@ -95,6 +94,27 @@
     <!-- search buttons -->
     <div class="row">
       <div class="col-md-4">
+        <div class="search-filters">
+          <label>
+            <input id="beer-check" type="checkbox">Beer
+          </label>
+          <label>
+              <input id="wine-check" type="checkbox">Wine
+            </label>
+            <label>
+                <input id="cocktails-check" type="checkbox">Cocktails
+              </label>
+              <label>
+                  <input id="food-check" type="checkbox">Food
+                </label>
+                <label>
+                    <input id="hookah-check" type="checkbox">Hookah
+                  </label>
+                  <label>
+                      <input id="dog-check" type="checkbox">Dog-Friendly
+                    </label>
+
+        </div>
         <div id="panel">
         </div>
       </div>

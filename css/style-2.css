@@ -1,9 +1,13 @@
-html, body, #map-canvas {
+html,
+body,
+#map-canvas {
     height: 100%;
     width: 100%;
 }
 
-body { font-family: 'Montserrat', sans-serif; }
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .navbar {
     background-color: black;
@@ -11,12 +15,12 @@ body { font-family: 'Montserrat', sans-serif; }
 }
 
 .map-wrapper {
-
     position: fixed;
     height: 800px;
     bottom: 0;
     overflow: auto;
 }
+
 /*
 #map_canvas iframe {
     position: absolute;
@@ -27,11 +31,14 @@ body { font-family: 'Montserrat', sans-serif; }
 }*/
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
+
 /* END OF TEMP STYLES */
 
 /* List */
 
-ul.store-list  { padding-left: 0;}
+ul.store-list {
+    padding-left: 0;
+}
 
 .storelocator-panel .store-list li,
 .storelocator-panel .directions-panel {
@@ -42,10 +49,24 @@ ul.store-list  { padding-left: 0;}
     margin: 15px;
 }
 
-.store ul { padding-left: 0; }
-.store .title { font-weight: 700; text-transform: uppercase; }
-.store .address { font-size: 0.7em; }
+.store ul {
+    padding-left: 0;
+}
 
+.storelocator-panel .store-list li.store:hover {
+    cursor: pointer;
+    background: rgba(255,0,0, 0.5);
+}
+
+
+.store .title {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.store .address {
+    font-size: 0.7em;
+}
 
 .store .picture {
     display: flex;
@@ -53,21 +74,65 @@ ul.store-list  { padding-left: 0;}
     align-items: center;
     overflow: hidden;
     /* width: 100px; */
-    width:  auto;
-    float: left; margin-right: 15px;
+    width: auto;
+    float: left;
+    margin-right: 15px;
 }
+
 /*.picture img {
     flex-shrink: 0;
     min-width: 100%;
     min-height: 100%;
 }*/
+
 /* Or try this but might not work on Edge */
+
 .picture img {
     object-fit: cover;
-       width: 120px;
-       height: 120px;
-    }
+    width: 120px;
+    height: 120px;
+}
+
+a {
+    display: block;
+}
+
+.location-search h4 { display: none;}
+.location-search input { width: 100%;}
+/* Style infopanel */
+
+.prices { float: right; color: red; font-size: 0.75em; }
+.address { font-family: 'Roboto', sans-serif; font-weight: 300;}
+.hours {color: red; font-size: 0.75em;}
+.times {font-size: 0.75em;}
+
+li.no-stores { display: none; }
+li.no-stores:after { content: "No establishments in this area match your criteria."}
+/* Authentication stuff*/
+
+#quickstart-avatar img {
+    border-radius: 50%;
+    width: 30px;
+    margin-right: 18px;
+}
+
+#quickstart-sign-in-status {
+    color: rgba(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 0.75em;
+    margin-right: 18px;
+    font-weight: 500;
+}
+
+#quickstart-sign-in,
+#quickstart-sign-out {
+    display: block;
+    padding: 8px 8px 8px 36px;
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.7);
+    background:  url("../images/download.svg") no-repeat 10px center;
+    background-color: rgba(255,255,255, 1);
+
+    background-size: 18px;
     
-   
-  
-  a { display: block; }
+}
