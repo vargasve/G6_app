@@ -219,24 +219,24 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
         featuresHTML = '';
 
         if (this.props_.featureList.beer) {
-            featuresHTML += '<div class="beer">BEER</div>';
+            featuresHTML += '<div class="beer"><i class="flaticon-beer"></i></div>';
         }
         if (this.props_.featureList.wine) {
-            featuresHTML += '<div class="wine">WINE</div>';
+            featuresHTML += '<div class="wine"><i class="flaticon-wine-glass"></i></div>';
         }
         if (this.props_.featureList.cocktails) {
-            featuresHTML += '<div class="cocktails">Cocktails</div>';
+            featuresHTML += '<div class="cocktails"><i class="flaticon-food"></i></div>';
         }
         if (this.props_.featureList.food) {
-            featuresHTML += '<div class="food">FOOD</div>';
+            featuresHTML += '<div class="food"><i class="flaticon-cutlery"></i></div>';
         }
         if (this.props_.featureList.hookah) {
-            featuresHTML += '<div class="hookah">HOOKAH</div>';
+            featuresHTML += '<div class="hookah"><i class="flaticon-hookah"></i></div>';
         }
         if (this.props_.featureList.dog) {
-            featuresHTML += '<div class="dog">DOG</div>';
+            featuresHTML += '<div class="dog"><i class="flaticon-dog"></i></div>';
         }
-        infoHTML = infoHTML + '<div class="featurelist">' + featuresHTML + '</div>';
+        infoHTML = infoHTML + '<div class="featurelist d-flex justify-content-center">' + featuresHTML + '</div>';
     }
     return infoHTML + "</div>";
 
@@ -278,7 +278,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                 //icon: result.icon,
                 hours: result.opening_hours,
                 website: result.website,
-
             };
 
             if (result.price_level) {

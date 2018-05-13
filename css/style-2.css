@@ -10,7 +10,7 @@ body {
 }
 
 .navbar {
-    background-color: black;
+    background-color: #7dcdcd;
     z-index: 5;
 }
 
@@ -36,29 +36,37 @@ body {
 
 /* List */
 
+.panelwrap { 
+    background-color: #f1f1f1;
+}
+
 ul.store-list {
     padding-left: 0;
 }
 
 .storelocator-panel .store-list li,
 .storelocator-panel .directions-panel {
-    padding: 0;
-    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    border-bottom: 2px solid #ccc;
     list-style: none;
-    height: 130px;
-    margin: 15px;
+    height: 170px;
+    margin: 10px 0px;
+    background-color: white;
+    transition: transform .2s;
 }
-
 .store ul {
     padding-left: 0;
 }
 
 .storelocator-panel .store-list li.store:hover {
     cursor: pointer;
-    background: rgba(255,0,0, 0.5);
+    /*background: rgba(255, 0, 0, 0.5);*/
+    border-bottom: 4px solid rgba(255,0,0,1);
+    transform: scale(1.05);
 }
 
-
+.storelocator-panel .store-list li.highlighted {    border-bottom: 2px solid rgba(255,0,0,1);
+}
 .store .title {
     font-weight: 700;
     text-transform: uppercase;
@@ -89,25 +97,76 @@ ul.store-list {
 
 .picture img {
     object-fit: cover;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 160px;
 }
+
+#map-canvas .store .picture,
+#map-canvas .store .zoomhere,
+#map-canvas .store .prices { display: none; }
 
 a {
     display: block;
 }
 
-.location-search h4 { display: none;}
-.location-search input { width: 100%;}
+.location-search h4 {
+    display: none;
+}
+
+.location-search input {
+    width: 100%;
+}
+
 /* Style infopanel */
+.title {font-size: .85em; }
 
-.prices { float: right; color: red; font-size: 0.75em; }
-.address { font-family: 'Roboto', sans-serif; font-weight: 300;}
-.hours {color: red; font-size: 0.75em;}
-.times {font-size: 0.75em;}
+.prices {
+    float: right;
+    color: red;
+    font-size: 0.75em;
+}
 
-li.no-stores { display: none; }
-li.no-stores:after { content: "No establishments in this area match your criteria."}
+.address {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.hours {
+    color: red;
+    font-size: 0.75em;
+}
+
+.times {
+    font-size: 0.75em;
+}
+
+.featuresList {
+    display: flex;
+    border-top: 1px solid #f1f1f1;
+}
+
+/*[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+    font-size: .25em;
+}*/
+
+.flaticon-beer:before,
+.flaticon-cutlery:before,
+.flaticon-wine-glass:before,
+.flaticon-dog:before,
+.flaticon-hookah:before,
+.flaticon-food:before { font-size: 1em; }
+
+li.no-stores {
+    display: none;
+}
+
+li.no-stores:after {
+    content: "No establishments in this area match your criteria."
+}
+
 /* Authentication stuff*/
 
 #quickstart-avatar img {
@@ -130,9 +189,36 @@ li.no-stores:after { content: "No establishments in this area match your criteri
     padding: 8px 8px 8px 36px;
     font-size: 0.75em;
     color: rgba(0, 0, 0, 0.7);
-    background:  url("../images/download.svg") no-repeat 10px center;
-    background-color: rgba(255,255,255, 1);
-
+    background: url("../images/download.svg") no-repeat 10px center;
+    background-color: rgba(255, 255, 255, 1);
     background-size: 18px;
-    
 }
+
+/* Footer -------------------------------------------------- */
+
+footer {
+    width: 100%;
+    height: 60px;
+    display: block;
+    color: #fff !important;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .75rem;
+    background: linear-gradient(-68deg, rgba(172, 50, 228, .2), rgba(72, 1, 255, .2));
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+    .description {
+        display: none;
+    }
+    .navbar>.container {
+        justify-content: center;
+    }
+}
+
+/****/
