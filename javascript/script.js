@@ -227,90 +227,99 @@ storeLocator.Store.prototype.generateFieldsHTML_ = function (x) {
 PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
     var service = this.service_;
     var details_cache = this.details_cache_;
+    var database = firebase.database();
 
     var beerCall = this.FEATURES_.getById('Beer-YES');
     var wineCall = this.FEATURES_.getById('Wine-YES');
-    var cocktailsCall = this.FEATURES_.getById('Cocktails-YES');
     var foodCall = this.FEATURES_.getById('Food-YES');
     var hookahCall = this.FEATURES_.getById('Hookah-YES');
     var dogCall = this.FEATURES_.getById('Dog-YES')
 
+       // props.features with an array FEATURES_
+
+
     service.search({
         bounds: bounds,
         type: ['restaurant'],
-        //  keyword: searchwords
+        keyword: searchwords
 
     }, function (results, search_status) {
         var stores = [];
 
+        if (!results) {
+            return;
+        }
+
         var callbacksRemaining = results.length;
 
-        for (var i = 0, result; result = results[i]; i++) {
+        for (var i = 0; results[i]; i++) {
+            var result = results[i];
+
+            if (!result) {
+                if (--callbacksRemaining <= 0) {
+                    console.log('invoking stores callback');
+                    callback(stores);
+                }
+                continue;
+            }
 
             function detailsCallback(details, details_status, snapshot) {
-                if (result) {
-
-                    if (details && details_status != 'CACHED') {
-                        details_cache[result.place_id] = details;
-                    }
-
-                    var props = {
-                        title: result.name,
-                        address: result.vicinity,
-                        types: result.types,
-                        hours: result.opening_hours,
-                        price_level: result.price_level
-                    };
-
-                    if (result.price_level) {
-                        if (result.price_level == "1" || result.price_level == "0") {
-                            props.price_level = "$";
-                        } else if (result.price_level == "2") {
-                            props.price_level = "$$";
-                        } else if (result.price_level == "3") {
-                            props.price_level = "$$$";
-                        } else {
-                            props.price_level = "$$$$";
-                        }
-                    } else {
-                        props.price_level = "This location does not provide price level service ";
-                    }
-
-                    if (details) {
-                        props.phone = details.formatted_phone_number;
-                    }
-
-                    if (result.photos) {
-                        props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
-                    }
-
-                    if (result.opening_hours) {
-                        if (result.opening_hours.open_now == true) {
-                            props.hours = "It is open now";
-                        } else if (result.opening_hours.open_now == false) {
-                            props.hours = "It is closed now";
-                        }
-                    }
-
-                    if (snapshot.val() !== null) {
-                        props.times = snapshot.val().times.starttime + " - " + snapshot.val().times.endtime;
-                        props.featureList = snapshot.val().features;
-                    }
-
-                    var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
-
-                    stores.push(store);
+                if (details && details_status != 'CACHED') {
+                    details_cache[result.place_id] = details;
                 }
 
+                var props = {
+                    title: result.name,
+                    address: result.vicinity,
+                    types: result.types,
+                    //icon: result.icon,
+                    hours: result.opening_hours,
+                    price_level: result.price_level
+
+                };
+
+                if (result.price_level) {
+                    if (result.price_level == "1" || result.price_level == "0") {
+                        props.price_level = "$";
+                    } else if (result.price_level == "2") {
+                        props.price_level = "$$";
+                    } else if (result.price_level == "3") {
+                        props.price_level = "$$$";
+                    } else {
+                        props.price_level = "$$$$";
+                    }
+                } else {
+                    props.price_level = "This location does not provide price level service ";
+                }
+
+                if (details) {
+                    props.phone = details.formatted_phone_number;
+                }
+
+                if (result.photos) {
+                    props.picture = result.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
+                }
+
+                if (result.opening_hours) {
+                    if (result.opening_hours.open_now == true) {
+                        props.hours = "It is open now";
+                    } else if (result.opening_hours.open_now == false) {
+                        props.hours = "It is closed now";
+                    }
+                }
+
+                if (snapshot.val() !== null) {
+                    props.times = snapshot.val().times.starttime + " - " + snapshot.val().times.endtime;
+                    props.featureList = snapshot.val().features;
+                }
+
+                var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
+
+                stores.push(store);
+
                 if (--callbacksRemaining <= 0) {
+                    console.log('invoking stores callback');
                     callback(stores);
-
-                    $("li").click(function () {
-
-                        $(this).parent().prepend($(this));
-                    })
-
-
                 }
             }
 
@@ -319,24 +328,18 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                     detailsCallback(details_cache[result.place_id], 'CACHED', snapshot);
                 } else {
                     var request = {
-                        placeId: results[i]['place_id']
+                        placeId: result.place_id
                     };
                     service.getDetails(request, function (details, details_status) {
-
                         detailsCallback(details, details_status, snapshot)
-
                     });
                 }
             }
-            var database = firebase.database();
+
             database.ref("/happyHowlerData/places").child(result.place_id).once("value", databaseCallback);
-
-
-
         }
     });
 };
-
 
 
 
