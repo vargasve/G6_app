@@ -65,7 +65,7 @@ function initApp() {
             var isAnonymous = user.isAnonymous;
             var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
-            $("#fav-check > i").addClass("loggedin");
+            $("#fav-check label").addClass("loggedin");
 
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as ' + displayName;
             $("#quickstart-sign-in").text('Sign out');
