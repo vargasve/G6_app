@@ -9,16 +9,20 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+h1 span {
+    display: none;
+}
+
 .navbar {
-    background-color: #7dcdcd;
+   /* background-color: #7dcdcd;*/
     z-index: 5;
 }
 
 .map-wrapper {
-    position: fixed;
+    /* position: fixed;
     height: 800px;
     bottom: 0;
-    overflow: auto;
+    overflow: auto;*/
 }
 
 /*
@@ -185,11 +189,15 @@ li.no-stores:after {
     background-color: white;
     display: block;
 }
-.search-filters i:before:hover { background-color: red; }
 
+.search-filters i:before:hover {
+    background-color: red;
+}
 
-#beer-check {  transition: transform .2s;
- }
+#beer-check {
+    transition: transform .2s;
+}
+
 /* Authentication stuff*/
 
 #quickstart-avatar img {
@@ -217,37 +225,108 @@ li.no-stores:after {
     background-size: 18px;
 }
 
-#quickstart-account-details {display: none; }
+#quickstart-account-details {
+    display: none;
+}
 
-.search-filters label:nth-Child(14) i {display: none;}
-.search-filters label:nth-Child(14) i.loggedin { display: block; }
+.search-filters label:nth-Child(14) i {
+    display: none;
+}
 
-
-/* Footer -------------------------------------------------- */
-
-footer {
-    width: 100%;
-    height: 60px;
+.search-filters label:nth-Child(14) i.loggedin {
     display: block;
-    color: #fff !important;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: .75rem;
-    background: linear-gradient(-68deg, rgba(172, 50, 228, .2), rgba(72, 1, 255, .2));
-    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
 }
 
-footer a {
-    text-decoration: underline;
+/* Parallax -------------------------------------------------- */
+
+.navbar {
+    border-radius: 0;
+    transition: all 0.3s ease-out;
+    height: 60px;
+   /* background-color: rgba(255, 255, 255, 0)*/
 }
 
-@media (max-width: 650px) {
-    .description {
-        display: none;
-    }
-    .navbar>.container {
-        justify-content: center;
-    }
+.navbar.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+  }
+  
+/*.affix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}*/
+
+/*#content-wrapper {
+    height: 100%;
+    background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
+    background-size: cover;
 }
+*/
+.parallax { background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
+    background-size: cover;}
+.parallax__group {
+    position: relative;
+    height: 100vh;
+    transform-style: preserve-3d;
+  }
+
+ .parallax {
+    perspective-origin-x: 100%;
+
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .parallax__layer {
+    transform-origin-x: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .parallax__layer--base {
+    transform: translateZ(0);
+  }
+  .parallax__layer--back {
+    transform: translateZ(-1px);
+  }
+
+.panelwrap {
+  height: 100%;
+    position: fixed;
+    overflow: auto; }
+
+    .container-fluid.bottom { margin-top: 46px;}
+
+
+    .map-wrapper {
+        position: fixed;
+        height: 800px;
+        bottom: 0;
+        overflow: auto;
+    }
+    
+
+    #map_canvas iframe {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+
+    #description { position: relative; top: 50%; left: 50%; }
+
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
+  
+
+/* */
 
 /****/

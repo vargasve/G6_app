@@ -16,7 +16,7 @@ function initMap() {
         maxZoom: 15,
         minZoom: 12,
         center: austin,
-        /*gestureHandling: "none",*/
+        gestureHandling: "none",
         zoomControl: false,
         styles: [
             {
