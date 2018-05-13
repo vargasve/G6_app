@@ -54,66 +54,111 @@ $(document).ready(function () {
         //////////////////////////////////////////////////
         // Pass through input admin form data
 
-        var hhID = $("#place-id").val().trim();
-        var hhStart = $("#place-hh-start").val().trim();
-        var hhEnd = $("#place-hh-end").val().trim();
-        var hhBeer = $("#input-beer").prop("checked");
-        var hhWine = $("#input-wine").prop("checked");
-        var hhFood = $("#input-food").prop("checked");
-        var hhDog = $("#input-dog").prop("checked");
-        var hhHookah = $("#input-hookah").prop("checked");
-        var hhComment = $("#place-notes").val();
+        var hhID = $("#input-id").val().trim();
+        var hhPlaceData = {};
 
-        //////////////////////////////////////////////////
-        // Create object to hold filter data
+        for (let field of $("input")) {
+            var fieldKey = $(field).attr("id").substring(6);
+            var fieldType = $(field).attr("type");
 
-        var hhPlaceData = {
-            "comment" : hhComment,
-            "features" : {
-                "beer"   : !!hhBeer,
-                "wine"   : !!hhWine,
-                "food"   : !!hhFood,
-                "hookah" : !!hhHookah,
-                "dog"    : !!hhDog,
-        },
-            "times" : {
-                "starttime" : hhStart,
-                "endtime"   : hhEnd,
-            },
-        };
+            if (fieldKey == "id") {
+                continue;
+            }
 
+            var fieldVal = $(field).val();
+
+            if (fieldType == "checkbox") {
+                fieldVal = !!($(field).prop("checked"));
+            } else {
+                fieldVal = fieldVal.trim();
+            }
+
+            var fieldSubObjectIndex = fieldKey.indexOf("-");
+
+            if (fieldSubObjectIndex >= 0) {
+                var fieldSubObject = fieldKey.substring(0, fieldSubObjectIndex);
+                var fieldSubKey = fieldKey.substring(fieldSubObjectIndex + 1);
+
+                if (!hhPlaceData.hasOwnProperty(fieldSubObject)) {
+                    hhPlaceData[fieldSubObject] = {};
+                }
+
+                hhPlaceData[fieldSubObject][fieldSubKey] = fieldVal;
+            } else {
+                hhPlaceData[fieldKey] = fieldVal;
+            }
+        }
+        console.log(JSON.stringify(hhPlaceData));
+        
         database.ref("/happyHowlerData/places").child(hhID).set(hhPlaceData);
     })
 
 
     database.ref("/happyHowlerData/places").on("child_added", function (childSnapshot) {
         var hhID = childSnapshot.key;
+        var hhDays = childSnapshot.val().times.days;
         var hhStart = childSnapshot.val().times.starttime;
         var hhEnd = childSnapshot.val().times.endtime;
+
+        var hhSpecials = childSnapshot.val().specials;
+
         var hhBeer = childSnapshot.val().features.beer;
         var hhWine = childSnapshot.val().features.wine;
+        var hhCocktails = childSnapshot.val().features.cocktails;
         var hhFood = childSnapshot.val().features.food;
         var hhDog = childSnapshot.val().features.hookah;
         var hhHookah = childSnapshot.val().features.dog;
+
         var hhComment = childSnapshot.val().comment;
 
         /////////////////////////////////////////////////
         // Add to personal data table
         var newRow = $("<tr>").attr("id", "hhrow-" + hhID);
-        var hhIDDisplay = $("<td>").text(hhID);
-        var hhStartDisplay = $("<td>").text(hhStart);
-        var hhEndDisplay = $("<td>").text(hhEnd);
-        var hhBeerDisplay = $("<td>").text(hhBeer);
-        var hhWineDisplay = $("<td>").text(hhWine);
-        var hhFoodDisplay = $("<td>").text(hhFood);
-        var hhDogDisplay = $("<td>").text(hhDog);
-        var hhHookahDisplay = $("<td>").text(hhHookah);
-        var hhCommentsDisplay = $("<td>").text(hhComment);
+        var hhIDDisplay = $("<td class='hhedit-id'>").text(hhID);
 
-        newRow.append(hhIDDisplay, hhStartDisplay, hhEndDisplay, hhBeerDisplay, hhWineDisplay, hhFoodDisplay, hhDogDisplay, hhHookahDisplay, hhCommentsDisplay);
+        var hhDaysDisplay = $("<td class='hhedit-times-days'>").text(hhDays)
+        var hhStartDisplay = $("<td class='hhedit-times-starttime'>").text(hhStart);
+        var hhEndDisplay = $("<td class='hhedit-times-endtime'>").text(hhEnd);
+
+        var hhSpecialsDisplay = $("<td class='hhedit-specials'>").text(hhSpecials);
+
+        var hhBeerDisplay = $("<td class='hhedit-features-beer'>").text(hhBeer);
+        var hhWineDisplay = $("<td class='hhedit-features-wine'>").text(hhWine);
+        var hhCocktailsDisplay = $("<td class='hhedit-features-cocktails'>").text(hhCocktails);
+        var hhFoodDisplay = $("<td class='hhedit-features-food'>").text(hhFood);
+        var hhDogDisplay = $("<td class='hhedit-features-dog'>").text(hhDog);
+        var hhHookahDisplay = $("<td class='hhedit-features-hookah'>").text(hhHookah);
+
+        var hhCommentsDisplay = $("<td class='hhedit-comment'>").text(hhComment);
+
+        newRow.append(hhIDDisplay, hhDaysDisplay, hhStartDisplay, hhEndDisplay, hhSpecialsDisplay, hhBeerDisplay, hhWineDisplay, hhCocktailsDisplay, hhFoodDisplay, hhDogDisplay, hhHookahDisplay, hhCommentsDisplay);
         $("#hhdata").append(newRow);
 
+        $("#hhrow-" + hhID).on("click", populateForm);
+
     });
+
+    function populateForm () {
+        var hhID = $(this).attr("id").substring(6);
+
+        for (let field of $("input")) {
+            var fieldKey = $(field).attr("id").substring(6);
+            var fieldType = $(field).attr("type");
+
+            if (fieldKey == "id") {
+                $(field).val(hhID);
+                continue;
+            }
+
+            var fieldVal = $("#hhrow-" + hhID + " > .hhedit-" + fieldKey).text();
+
+            if (fieldType == "checkbox") {
+                $(field).prop("checked", (fieldVal == "true"));
+            } else {
+                $(field).val(fieldVal);
+            }
+        }
+    }
 });
 
 

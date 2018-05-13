@@ -44,7 +44,6 @@
     <script src="javascript/store-locator.min.js"></script>
     <script src="javascript/database.js"></script>
 
-    <script src="javascript/script.js"></script>
 
 </head>
 
@@ -73,7 +72,7 @@
     <div id="map-canvas"></div> -->
 
     <!-- site container -->
-    <div class="container">
+    <div class="container-fluid">
         <!-- logo header -->
         <header>
             <h1>
@@ -88,51 +87,62 @@
 
                 <div id="form-wrapper">
                     <h2>Add New Data</h2>
-                    <form id="train-form">
+                    <form id="hh-form">
 
                         <div class="form-row">
                             <div class="form-group col-sm-12 col-xs-12">
-                                <label for="place-id">Place ID</label>
-                                <input type="text" class="form-control form-control-sm" id="place-id" placeholder="ex. ChIJXQ-Uy2LKRIYR3W5SjLhBBj0">
+                                <label for="input-id">Place ID</label>
+                                <input type="text" class="form-control form-control-sm" id="input-id" placeholder="ex. ChIJXQ-Uy2LKRIYR3W5SjLhBBj0">
                             </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                    <label for="input-times-days">Happy Hour Days</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-times-days" placeholder="ex. M-F">
+                                </div>
                             <div class="form-group col-sm-6 col-xs-12">
-                                <label for="place-hh-start">Happy Hour Start</label>
-                                <input type="time" class="form-control form-control-sm" id="place-hh-start" placeholder="5:00PM">
+                                <label for="input-times-start">Happy Hour Start</label>
+                                <input type="time" class="form-control form-control-sm" id="input-times-starttime" placeholder="5:00PM">
                             </div>
 
                             <div class="form-group col-sm-6 col-xs-12">
-                                <label for="place-hh-end">Happy Hour End</label>
-                                <input type="time" class="form-control form-control-sm" id="place-hh-end" placeholder="7:00PM">
+                                <label for="input-times-end">Happy Hour End</label>
+                                <input type="time" class="form-control form-control-sm" id="input-times-endtime" placeholder="7:00PM">
                             </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                    <label for="input-specials">Happy Hour Specials</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-specials" placeholder="ex. $5 Margaritas">
+                                </div>
 
                             <h3>Categories:</h3>
                             <div class="form-group col-xs-12">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="input-beer" value="option1">
-                                    <label class="form-check-label" for="input-beer">Beer</label>
+                                    <input class="form-check-input" type="checkbox" id="input-features-beer" value="option1">
+                                    <label class="form-check-label" for="input-features-beer">Beer</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="input-wine" value="option2">
-                                    <label class="form-check-label" for="input-wine">Wine</label>
+                                    <input class="form-check-input" type="checkbox" id="input-features-wine" value="option2">
+                                    <label class="form-check-label" for="input-features-wine">Wine</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="input-food" value="option3">
-                                    <label class="form-check-label" for="input-food">Food</label>
+                                        <input class="form-check-input" type="checkbox" id="input-features-cocktails" value="option3">
+                                        <label class="form-check-label" for="input-features-cocktails">Cocktails</label>
+                                    </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="input-features-food" value="option4">
+                                    <label class="form-check-label" for="input-features-food">Food</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="input-hookah" value="option4">
-                                    <label class="form-check-label" for="input-hookah">Hookah</label>
+                                    <input class="form-check-input" type="checkbox" id="input-features-hookah" value="option5">
+                                    <label class="form-check-label" for="input-features-hookah">Hookah</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="input-dog" value="option4">
-                                    <label class="form-check-label" for="input-dog">Dog</label>
+                                    <input class="form-check-input" type="checkbox" id="input-features-dog" value="option6">
+                                    <label class="form-check-label" for="input-features-dog">Dog</label>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-xs-12">
-                                <label for="place-notes">Leave a Comment:</label>
-                                <textarea type="textbox" rows="4" class="form-control form-control-sm" id="place-notes" placeholder="Add notes here"></textarea>
-                            </div>
-
+                                    <label for="input-comment">Add'l Comments (Restaurant Name)</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-comment" placeholder="ex. Restaurant name">
+                                </div>
                         </div>
                         <button class="btn btn-primary btn-sm btn-block mt-auto" type="submit" id="submit">Submit</button>
 
@@ -141,14 +151,18 @@
 
                     <div id="data-wrapper" class="table-responsive">
                         <h2>Stuff We Added</h2>
+                        <p>Click a row to edit the entry (will populate in the form)</p>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Place ID</th>
+                                    <th>Happy Hour Days</th>
                                     <th>Happy Hour Start</th>
                                     <th>Happy Hour End</th>
+                                    <th>Specials</th>
                                     <th>Beer?</th>
                                     <th>Wine?</th>
+                                    <th>Cocktails?</th>
                                     <th>Food?</th>
                                     <th>Hookah?</th>
                                     <th>Dog?</th>
