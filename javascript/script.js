@@ -137,6 +137,8 @@ function initPanel(map) {
     view.createMarker = function (store) {
         let marker = new google.maps.Marker({
             position: store.getLocation(),
+            animation: google.maps.Animation.DROP,
+
         });
 
         markers.push(marker);

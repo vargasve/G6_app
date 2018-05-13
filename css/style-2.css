@@ -36,7 +36,7 @@ body {
 
 /* List */
 
-.panelwrap { 
+.panelwrap {
     background-color: #f1f1f1;
 }
 
@@ -54,6 +54,7 @@ ul.store-list {
     background-color: white;
     transition: transform .2s;
 }
+
 .store ul {
     padding-left: 0;
 }
@@ -61,12 +62,14 @@ ul.store-list {
 .storelocator-panel .store-list li.store:hover {
     cursor: pointer;
     /*background: rgba(255, 0, 0, 0.5);*/
-    border-bottom: 4px solid rgba(255,0,0,1);
+    border-bottom: 4px solid rgba(255, 0, 0, 1);
     transform: scale(1.05);
 }
 
-.storelocator-panel .store-list li.highlighted {    border-bottom: 2px solid rgba(255,0,0,1);
+.storelocator-panel .store-list li.highlighted {
+    border-bottom: 2px solid rgba(255, 0, 0, 1);
 }
+
 .store .title {
     font-weight: 700;
     text-transform: uppercase;
@@ -103,7 +106,9 @@ ul.store-list {
 
 #map-canvas .store .picture,
 #map-canvas .store .zoomhere,
-#map-canvas .store .prices { display: none; }
+#map-canvas .store .prices {
+    display: none;
+}
 
 a {
     display: block;
@@ -118,7 +123,10 @@ a {
 }
 
 /* Style infopanel */
-.title {font-size: .85em; }
+
+.title {
+    font-size: .85em;
+}
 
 .prices {
     float: right;
@@ -145,19 +153,14 @@ a {
     border-top: 1px solid #f1f1f1;
 }
 
-/*[class^="flaticon-"]:before,
-[class*=" flaticon-"]:before,
-[class^="flaticon-"]:after,
-[class*=" flaticon-"]:after {
-    font-size: .25em;
-}*/
-
 .flaticon-beer:before,
 .flaticon-cutlery:before,
 .flaticon-wine-glass:before,
 .flaticon-dog:before,
 .flaticon-hookah:before,
-.flaticon-food:before { font-size: 1em; }
+.flaticon-food:before {
+    font-size: 1em;
+}
 
 li.no-stores {
     display: none;
@@ -167,6 +170,25 @@ li.no-stores:after {
     content: "No establishments in this area match your criteria."
 }
 
+/* Filter List */
+
+.search-filters input {
+    visibility: hidden;
+}
+
+.search-filters i:before {
+    font-size: 1.75em;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    display: block;
+}
+
+
+#beer-check {  transition: transform .2s;
+ }
 /* Authentication stuff*/
 
 #quickstart-avatar img {
