@@ -66,7 +66,7 @@ function initApp() {
             var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
 
-            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as' + displayName;
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as ' + displayName;
             $("#quickstart-sign-in").text('Sign out');
             $("#quickstart-sign-in").addClass('qs-sign-out');
             //var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
@@ -80,8 +80,9 @@ function initApp() {
 
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
-            document.getElementById('quickstart-account-details').textContent = 'null';
-            document.getElementById('quickstart-oauthtoken').textContent = 'null';
+            document.getElementById('quickstart-account-details').textContent = '';
+            document.getElementById('quickstart-oauthtoken').textContent = '';
+            document.getElementById('quickstart-avatar').innerHTML = '';
             // [END_EXCLUDE]
         }
         // [START_EXCLUDE]
