@@ -238,6 +238,9 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
         if (this.props_.featureList.dog) {
             featuresHTML += '<div class="dog"><i class="flaticon-dog"></i></div>';
         }
+        if (this.props_.featureList.fav) {
+            featuresHTML += '<div class="fav"><i class="flaticon-dog"></i></div>';
+        }
         infoHTML = infoHTML + '<div class="featurelist d-flex justify-content-center">' + featuresHTML + '</div>';
     }
     return infoHTML + "</div>";
@@ -375,7 +378,8 @@ function matchFeatures(features) {
         ($("#cocktails-check").prop("checked") && !features.cocktails) ||
         ($("#food-check").prop("checked") && !features.food) ||
         ($("#hookah-check").prop("checked") && !features.hookah) ||
-        ($("#dog-check").prop("checked") && !features.dog)) {
+        ($("#dog-check").prop("checked") && !features.dog) ||
+        ($("#fav-check").prop("checked") && !features.fav)) {
         return false;
     } else {
         return true;

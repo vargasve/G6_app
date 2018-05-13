@@ -216,6 +216,11 @@ li.no-stores:after {
     background-size: 18px;
 }
 
+#quickstart-account-details {display: none; }
+
+#fav-check {display: none;}
+#fav-check.loggedin { display: block; }
+
 /* Footer -------------------------------------------------- */
 
 footer {
