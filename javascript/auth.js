@@ -47,7 +47,6 @@ function initApp() {
 
         if (errorCode === 'auth/account-exists-with-different-credential') {
             alert('You have already signed up with a different auth provider for that email.');
-
             
             console.error(error);
         }
@@ -84,7 +83,7 @@ function initApp() {
             document.getElementById('quickstart-account-details').textContent = '';
             document.getElementById('quickstart-oauthtoken').textContent = '';
             document.getElementById('quickstart-avatar').innerHTML = '';
-            $("label > i").removeClass("loggedin");
+            $("label > i").removeClass("loggedin"); // this is to hide the Favorites icon
 
             // [END_EXCLUDE]
         }

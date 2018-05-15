@@ -153,6 +153,8 @@ function initPanel(map) {
         featureFilter: true
     });
 
+    //////////////////////////////////////////////////
+
     function refreshMarkers() {
         view.clearMarkers();
         view.refreshView();
@@ -164,7 +166,6 @@ function initPanel(map) {
     $("#food-check").on("click", refreshMarkers);
     $("#hookah-check").on("click", refreshMarkers);
     $("#dog-check").on("click", refreshMarkers);
-
 }
 
 //////////////////////////////////////////////////
@@ -384,7 +385,6 @@ function matchFeatures(features) {
     } else {
         return true;
     }
-
 }
 
 google.maps.event.addDomListener(window, 'load', initMap);

@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     var config = {
         apiKey: "AIzaSyAx2wPUKX8AG232jWrO8DPSzavhcEAm2eM",
         authDomain: "happyhowler-58dad.firebaseapp.com",
@@ -34,7 +33,7 @@ $(document).ready(function () {
 
     //////////////////////////////////////////////////
     // Initial variables
-    var currentSnapshot = null;
+    //var currentSnapshot = null;
 
     //////////////////////////////////////////////////
     // Buttons
