@@ -6,9 +6,11 @@ body,
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
+    font-family: 'Kirang Haerang', cursive;
+    font-size: larger ;
+    background: url("../images/background.jpeg");
     background-size: cover;
+
 }
 
 h1 span {
@@ -125,7 +127,7 @@ a {
 }
 
 .address {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
 }
 
@@ -321,12 +323,21 @@ li.no-stores:after {
 }
 
 #description h2 { text-transform: uppercase; font-size: 2.5em; color: #fff; }
-#description .button {}
-.billboard { margin-top: 100px; }
+#description .button {
 
-#description p { color: #fff; font-family: 'Roboto', sans-serif; line-height: 1.8em;}
+}
+.billboard { 
+    margin-top: 100px;
+    padding: 25px;
+    background-color: cadetblue;
+ }
 
-.pupper { width: 80%; padding-top: 200px; }
+#description p { color: #fff; font-family: 'Open Sans', sans-serif; line-height: 1.8em;}
+
+.pupper { 
+    width: 80%; 
+    padding-top: 100px; 
+}
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
 /* */
