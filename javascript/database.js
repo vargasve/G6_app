@@ -32,21 +32,7 @@ $(document).ready(function () {
     });
 
     //////////////////////////////////////////////////
-    // Initial variables
-    //var currentSnapshot = null;
-
-    //////////////////////////////////////////////////
-    // Buttons
-    /*
-        var beer = $("<button>").attr("id", "btn-beer").addClass("button btn1").html("<i class='flaticon-beer'></i>");
-        var wine = $("<button>").attr("id", "btn-wine").addClass("button btn2").html("<i class='flaticon-wine-glass'></i>");
-        var food = $("<button>").attr("id", "btn-food").addClass("button btn3").html("<i class='flaticon-food'></i>");
-        var hookah = $("<button>").attr("id", "btn-hookah").addClass("button btn4").html("<i class='flaticon-hookah'></i>");
-        var dog = $("<button>").attr("id", "btn-dog").addClass("button btn5").html("<i class='flaticon-dog'></i>");
     
-        var buttons = $("<div>").addClass("buttons-wrap").append(beer, wine, food, hookah, dog);
-        $("#hhInfo").append(buttons);
-    */
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
@@ -108,6 +94,7 @@ $(document).ready(function () {
         var hhDog = childSnapshot.val().features.hookah;
         var hhHookah = childSnapshot.val().features.dog;
 
+    
         var hhComment = childSnapshot.val().comment;
 
         /////////////////////////////////////////////////
