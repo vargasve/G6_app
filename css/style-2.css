@@ -31,7 +31,7 @@ h2 { font-family: "Kirang Haerang", cursive; font-size: 2em;}
 /* Panel Stuff -------------------------------------------------- */
 
 .panelwrap {
-    background-color: #f1f1f1;
+    background-color: rgba(255,255,255,0);
 }
 
 .panel {
