@@ -1,3 +1,6 @@
+/* Happy Howler -------------------------------------------------- */
+/* Global Stuff -------------------------------------------------- */
+
 html,
 body,
 #map-canvas {
@@ -9,6 +12,8 @@ body {
     
     background: url("../images/background.jpeg");
     background-size: cover;
+    padding-top: 60px;
+
 
 }
 
@@ -23,13 +28,13 @@ h1 span {
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 
-/* END OF TEMP STYLES */
-
-/* List */
+/* Panel Stuff -------------------------------------------------- */
 
 .panelwrap {
     background-color: #f1f1f1;
 }
+
+.panel { padding-top: 65px; }
 
 ul.store-list {
     padding-left: 0;
@@ -42,7 +47,7 @@ ul.store-list {
     list-style: none;
     height: 170px;
     margin: 10px 0px;
-    background-color: white;
+    background-color: rgba(255,255,255,0);
     transition: transform .2s;
 }
 
@@ -113,7 +118,7 @@ a {
     width: 100%;
 }
 
-/* Style infopanel */
+/* Info Panel  -------------------------------------------------- */
 
 .title {
     font-size: .85em;
@@ -151,7 +156,17 @@ a {
 .flaticon-hookah:before,
 .flaticon-food:before {
     font-size: 1em;
+    line-height: 1.75;
+
 }
+
+.filter-icons {
+    text-align: center;}
+
+    .filter-icons label {
+        text-align: center;}
+
+        .filter-title { font-size: .75em;text-transform: uppercase;}
 
 li.no-stores {
     display: none;
@@ -161,20 +176,32 @@ li.no-stores:after {
     content: "No establishments in this area match your criteria."
 }
 
-/* Filter List */
+/* Filter List -------------------------------------------------- */
 
 .search-filters input {
-    visibility: hidden;
-}
+display: none;}
 
 .search-filters i:before {
     font-size: 1.75em;
     text-align: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background-color: white;
+    /*border-radius: 50%;
+    background-color: white;*/
     display: block;
+    padding: 0;
+margin: 0 auto;
+}
+
+.filter-icons.favs i img {
+
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    border-radius: 14%;
+
+    margin: 0 auto;
 }
 
 .search-filters i:before:hover {
@@ -185,7 +212,14 @@ li.no-stores:after {
     transition: transform .2s;
 }
 
-/* Authentication stuff*/
+
+.filterOn + label i,
+.filterOn + label .filter-title {color: red;}
+
+.filterOn i {color: red;}
+
+
+/* Authentication -------------------------------------------------- */
 
 #quickstart-avatar img {
     border-radius: 50%;
@@ -224,12 +258,13 @@ li.no-stores:after {
     display: block;
 }
 
-/* Parallax -------------------------------------------------- */
+/* Nav -------------------------------------------------- */
 
 .navbar {
     border-radius: 0;
     transition: all 0.3s ease-out;
     height: 60px;
+    padding: 0;
     background-color: rgba(255, 255, 255, 0)
 }
 
@@ -238,22 +273,7 @@ li.no-stores:after {
     transition: background-color 200ms linear;
 }
 
-/*.affix {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-
-}*/
-
-/*#content-wrapper {
-    height: 100%;
-    background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
-    background-size: cover;
-}
-*/
-
+/* Parallax -------------------------------------------------- */
 
 .parallax__group {
     position: relative;
@@ -289,20 +309,40 @@ li.no-stores:after {
     height: 600px ;
     position: fixed;
     overflow: auto;
-    padding: 25px;
-    margin-bottom: 50px;
+    /*padding-top: 100px;
+    top: 60px;*/
+    /*padding: 25px;
+    margin-bottom: 50px;*/
 }
 
-.map-wrapper {
+/*.map-wrapper {
     position: fixed;
     height: 600px;
     bottom: 0;
     overflow: auto;
+    width: 64.5%;
+    margin-right: 15px;
+}
+*/
+
+.map-col {
+
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+
     padding: 25px;
     margin-right: 50px;
     margin-bottom: 50px;
 }
+.panelwrap, .map-col { top: 60px; }
 
+.map-wrapper{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 #map_canvas iframe {
     position: absolute;
     top: 0;
@@ -310,7 +350,7 @@ li.no-stores:after {
     right: 0;
     left: 0;
 }
-
+.search-filters { padding-top: 0px;}
 /*#description {
     text-align: center;
     position: absolute;
@@ -329,6 +369,9 @@ li.no-stores:after {
 #description .button {
 
 }
+
+
+.pupper { width: 80%; }
 
 h2{
     font-family: 'Kirang Haerang', cursive;
@@ -352,9 +395,83 @@ h2{
 
 /****/
 
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+ .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+  }
+
+
+  @media (max-width: 998px) {
+    .search-filters { padding-top: 20px;}
+
+  }
+  @media (max-width: 768px) {
+
+  .panelwrap {
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  /*padding-top: 100px;
+  top: 60px;*/
+}
+
+.map-col {
+
+  height: 30%;
+  position: fixed;
+  overflow: auto;
+}
+
+.map-wrapper{
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map_canvas iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.search-filters { padding-top: 240px;}
+
+
+.search-filters i:before {
+    font-size: 1.75em;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    /*border-radius: 50%;
+    background-color: white;*/
+    display: block;
+    padding: 0;
+margin: 0 auto;
+}
+
+.filter-icons.favs i img {
+
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    border-radius: 14%;
+
+    margin: 0 auto;
+}
+
+
 #weather {
     border-radius: 5px;
-    background-color: white;
+    background-color: rgba(255,255,255,0);
     padding-left: 5px;
     padding-right: 5px;
     font-size: .75rem;
