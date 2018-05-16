@@ -2,6 +2,7 @@
 
 var searchwords = "happy+hour";
 var austin = { lat: 30.2672, lng: -97.7431 };
+var infoWindow;
 
 //////////////////////////////////////////////////
 
@@ -22,29 +23,29 @@ function initMap() {
 
     var map = new google.maps.Map(map_document, map_options);
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
             };
 
-    //infoWindow.setPosition(pos);
-    //infoWindow.setContent('Location found.');
-    //infoWindow.open(map);
-                map.setCenter(pos);
-                map.setZoom(15);
-                var listener = google.maps.event.addListener(map, "idle", function () {
-                    if (map.getZoom() < 14) map.setZoom(16);
-                    google.maps.event.removeListener(listener);
-                });
-
-            }, function () {
-                handleLocationError(true, map.getCenter());
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+            //infoWindow.open(map);
+            map.setCenter(pos);
+            map.setZoom(15);
+            var listener = google.maps.event.addListener(map, "idle", function () {
+                if (map.getZoom() < 14) map.setZoom(16);
+                google.maps.event.removeListener(listener);
             });
-        } else {
-            handleLocationError(false,map.getCenter());
-        }
+
+        }, function () {
+            //handleLocationError(true, map.getCenter());
+        });
+    } else {
+        //handleLocationError(false,map.getCenter());
+    }
 
     initPanel(map);
 }
@@ -57,7 +58,7 @@ function initPanel(map) {
     var data = new PlacesDataSource(map);
 
     var view = new storeLocator.View(map, data, {
-                geolocation: true,
+        geolocation: true,
     })
 
     var markerSize = new google.maps.Size(24, 24);
@@ -88,9 +89,9 @@ function initPanel(map) {
 
         if (selectedStoreEntry && storePanel) {
             storePanel.animate({
-              scrollTop: selectedStoreEntry.offset().top - storePanel.offset().top + storePanel.scrollTop()
+                scrollTop: selectedStoreEntry.offset().top - storePanel.offset().top + storePanel.scrollTop()
             });
-        } 
+        }
     });
 
     //////////////////////////////////////////////////
@@ -108,22 +109,27 @@ function initPanel(map) {
     $("#dog-check").on("click", refreshMarkers);
     $("#fav-check").on("click", refreshMarkers);
 
+
+    $(".filter-icons > input").on("click", function () {
+        $(this).toggleClass("filterOn"); 
+    })
+
+    
 }
 
-$(".filter-icons.beer").click(function () {
-    $(this).toggleClass("filterOn"); 
-})
+
+
 
 
 //////////////////////////////////////////////////
-
+/*
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-
+*/
 //////////////////////////////////////////////////
 
 function PlacesDataSource(map) {
