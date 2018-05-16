@@ -347,6 +347,7 @@ margin: 0 auto;
     position: fixed;
     overflow: auto;
 }
+.panelwrap, .map-col { top: 60px; }
 
 .map-wrapper{
 
@@ -362,7 +363,7 @@ margin: 0 auto;
     right: 0;
     left: 0;
 }
-.search-filters { padding-top: 80px;}
+.search-filters { padding-top: 0px;}
 /*#description {
     text-align: center;
     position: absolute;
