@@ -17,15 +17,15 @@ $.ajax({
     // Log the resulting object
     if (currentCondition === "clear-day" ){
       console.log("working")
-      currentCondition = "<img src='./images/weatherIcons/Sun.svg'>"
+      currentCondition = "<span>It's a balmy </span><img src='./images/weatherIcons/Sun.svg'>"
 
     }
     else if (currentCondition === "clear-night") {
-      currentCondition = "<img src='./images/weatherIcons/Moon.svg'>"
+      currentCondition = "<span>Late-night drinks? </span><img src='./images/weatherIcons/Moon.svg'>"
     }
  
     else if (currentCondition === "rain") {
-      currentCondition = "<img src='./images/weatherIcons/Cloud-Rain.svg'>"
+      currentCondition = "<span>Rain won't ruin my plans: </span><img src='./images/weatherIcons/Cloud-Rain.svg'>"
     }
     else if (currentCondition === "snow") {
       currentCondition = "<img src='./images/weatherIcons/Cloud-Snow.svg'>"
@@ -40,13 +40,13 @@ $.ajax({
       currentCondition = "<img src='./images/weatherIcons/Cloud-Fog.svg'>"
     }
     else if (currentCondition === "cloudy") {
-      currentCondition = "<img src='./images/weatherIcons/Cloud.svg'>"
+      currentCondition = "<span>It's a balmy </span><img src='./images/weatherIcons/Cloud.svg'>"
     }
     else if (currentCondition === "partly-cloudy-day") {
-      currentCondition = "<img src='./images/weatherIcons/Cloud-Sun.svg'>"
+      currentCondition = "<span>It's a balmy </span><img src='./images/weatherIcons/Cloud-Sun.svg'>"
     }
    else if (currentCondition === "partly-cloudy-night") {
-      currentCondition = "<img src='./images/weatherIcons/Cloud-Moon.svg'>"
+      currentCondition = "<span>Late-night drinks? </span><img src='./images/weatherIcons/Cloud-Moon.svg'>"
     }
   
     else {
