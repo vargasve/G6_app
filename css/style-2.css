@@ -19,6 +19,8 @@ h1 span {
     display: none;
 }
 
+h2 { font-family: "Kirang Haerang", cursive; font-size: 2em;}
+
 .navbar {
     /* background-color: #7dcdcd;*/
     z-index: 5;
@@ -386,7 +388,10 @@ li.no-stores:after {
 
 #description h2 { text-transform: uppercase; font-size: 2.5em; color: #fff; }
 #description .button {}
-.billboard { margin-top: 100px; }
+.billboard { margin-top: 100px; padding: 25px;
+    background-color: cadetblue; }
+
+
 
 #description p { color: #fff; font-family: 'Roboto', sans-serif; line-height: 1.8em;}
 
