@@ -10,7 +10,7 @@ body,
 }
 
 body {
-    background: url("../images/bokeh-2880x1800-blur-4k-3385.jpg");
+    background: url("../images/background.jpeg");
     background-size: cover;
     padding-top: 60px;
 }
