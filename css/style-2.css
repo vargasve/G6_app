@@ -6,8 +6,7 @@ body,
 }
 
 body {
-    font-family: 'Kirang Haerang', cursive;
-    font-size: larger ;
+    
     background: url("../images/background.jpeg");
     background-size: cover;
 
@@ -330,7 +329,12 @@ li.no-stores:after {
 #description .button {
 
 }
-.billboard { 
+
+h2{
+    font-family: 'Kirang Haerang', cursive;
+    font-size: larger;
+}
+.billboard {  
     margin-top: 100px;
     padding: 25px;
     background-color: cadetblue;
