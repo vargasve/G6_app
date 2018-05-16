@@ -112,13 +112,8 @@ function initPanel(map) {
 
     $(".filter-icons > input").on("click", function () {
         $(this).toggleClass("filterOn"); 
-    })
-
-    
+    })    
 }
-
-
-
 
 
 //////////////////////////////////////////////////
@@ -154,6 +149,9 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
     }
     if (this.props_.times) {
         infoHTML = infoHTML + '<div class="times">' + this.props_.times + '</div>';
+    }
+    if (this.props_.specials) {
+        infoHTML = infoHTML + '<div class="specials">' + this.props_.specials + '</div>';
     }
 
     if (this.props_.website) {
@@ -279,6 +277,10 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                 props.featureList = snapshot.val().features;
                 features = snapshot.val().features;
             }
+            if(snapshot.val() !== null) {
+
+                props.specials = snapshot.val().specials;
+            }
 
             if (matchFeatures(features)) {
                 var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
@@ -291,15 +293,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                 console.log('invoking stores callback');
                 callback(stores);
             }
-
-            // Make a function that shows a place when marker is clicked and hoist to top
-            // Make click event for place marker
-            // On click, ensure it centers on map
-            // Also, make sure it highlights on the sidebar, and hoist the result to top of list
-            // Then, make sure it does not duplicate the result
-
-
-
 
         }
 
@@ -317,7 +310,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
 
         for (let result of results) {
-            // console.log(result);
 
             if (!result) {
                 if (--callbacksRemaining <= 0) {
