@@ -56,7 +56,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse sticky-top" id="myAffix" data-toggle="affix">
+  <nav class="navbar navbar-inverse fixed-top" id="myAffix" data-toggle="affix">
     <div class="container-fluid">
       <div class="navbar-header">
         <h1>
@@ -100,19 +100,19 @@
                 </p>
                 <a class="btn btn-primary btn-lg" href="#bottom">Go to the bottom</a>
               </div>
-            
+
             </div>
 
             <div class="col-lg-6 align-self-baseline">
-                <div class="pupper">
-                  <img class="img-fluid" src="images/pupper.png" />
-                </div>
+              <div class="pupper">
+                <img class="img-fluid" src="images/pupper.png" />
               </div>
+            </div>
 
           </div>
     </section>
     <section class="parallax__group" id="bottom">
-      <div class="parallax__layer parallax__layer--back map-wrapper">
+      <div class="parallax__layer parallax__layer--back">
         <div class="container-fluid bottom">
           <!-- logo header -->
 
@@ -121,62 +121,73 @@
             <div class="col-md-4 panelwrap">
               <div class="search-filters">
 
-                <input id="beer-check" type="checkbox">
-                <label for="beer-check">
-                  <i class="flaticon-beer"></i>
-                  <div>Beer</div>
-                </label>
+                <div class="row1 d-flex justify-content-around">
+                  <div class="filter-icons beer">
+                    <input id="beer-check" type="checkbox">
+                    <label for="beer-check">
+                      <i class="flaticon-beer"></i>
+                      <div class="filter-title">Beer</div>
+                    </label>
+                  </div>
+                  <div class="filter-icons wine">
+                    <input id="wine-check" type="checkbox">
+                    <label for="wine-check">
+                      <i class="flaticon-wine-glass"></i>
+                      <div class="filter-title">Wine</div>
+                    </label>
+                  </div>
+                  <div class="filter-icons cocktails">
+                    <input id="cocktails-check" type="checkbox">
+                    <label for="cocktails-check">
+                      <i class="flaticon-food"></i>
+                      <div class="filter-title">Cocktails</div>
+                    </label>
+                  </div>
+                </div>
 
-                <input id="wine-check" type="checkbox">
-                <label for="wine-check">
-                  <i class="flaticon-wine-glass"></i>
-                  <div>Wine</div>
-                </label>
-                <input id="cocktails-check" type="checkbox">
-                <label for="cocktails-check">
-
-                  <i class="flaticon-food"></i>
-                  <div>Cocktails</div>
-                </label>
-                <input id="food-check" type="checkbox">
-                <label for="food-check">
-
-                  <i class="flaticon-cutlery"></i>
-                  <div>Food</div>
-                </label>
-                <input id="hookah-check" type="checkbox">
-                <label for="hookah-check">
-
-                  <i class="flaticon-hookah"></i>
-                  <div>Hookah</div>
-                </label>
-                <input id="dog-check" type="checkbox">
-                <label for="dog-check">
-                  <i class="flaticon-dog"></i>
-                  <div>Dogs Allowed</div>
-                </label>
-
-                <input id="fav-check" type="checkbox">
-                <label for="fav-check">
-                  <i class="flaticon-dog"></i>
-                  <div>Favorites</div>
-                </label>
-
+                <div class="row2 d-flex justify-content-around">
+                <div class="filter-icons food">
+                  <input id="food-check" type="checkbox">
+                  <label for="food-check">
+                    <i class="flaticon-cutlery"></i>
+                    <div class="filter-title">Food</div>
+                  </label>
+                </div>
+                <div class="filter-icons hookah">
+                  <input id="hookah-check" type="checkbox">
+                  <label for="hookah-check">
+                    <i class="flaticon-hookah"></i>
+                    <div class="filter-title">Hookah</div>
+                  </label>
+                </div>
+                <div class="filter-icons dogs">
+                  <input id="dog-check" type="checkbox">
+                  <label for="dog-check">
+                    <i class="flaticon-dog"></i>
+                    <div class="filter-title">Dogs</div>
+                  </label>
+                </div>
+                <div class="filter-icons favs">
+                  <input id="fav-check" type="checkbox">
+                  <label for="fav-check">
+                    <i class="flaticon"><img src="images/007-favorite.svg"></i>
+                    <div class="filter-title">Favs</div>
+                  </label>
+                </div>
+              </div>
               </div>
               <div id="panel">
               </div>
             </div>
 
-            <div class="col-md-8 offset-lg-4 map-wrapper">
-              <div id="map-canvas">
-                <div id="map"></div>
+            <div class="col-md-8 offset-lg-4 map-col">
+              <div class="map-wrapper">
+                <div id="map-canvas">
+                  <div id="map"></div>
+                </div>
               </div>
-
-
             </div>
           </div>
-        </div>
-      </div>
     </section>
   </main>
 </body>

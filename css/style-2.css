@@ -1,3 +1,6 @@
+/* Happy Howler -------------------------------------------------- */
+/* Global Stuff -------------------------------------------------- */
+
 html,
 body,
 #map-canvas {
@@ -9,6 +12,8 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: url("../images/Cigars_and_Whiskey_Wallpaper.jpg");
     background-size: cover;
+    padding-top: 60px;
+
 }
 
 h1 span {
@@ -22,13 +27,13 @@ h1 span {
 
 /*.buttons-wrap { position: absolute; top: 0; right: 0; }*/
 
-/* END OF TEMP STYLES */
-
-/* List */
+/* Panel Stuff -------------------------------------------------- */
 
 .panelwrap {
     background-color: #f1f1f1;
 }
+
+.panel { padding-top: 65px; }
 
 ul.store-list {
     padding-left: 0;
@@ -112,7 +117,7 @@ a {
     width: 100%;
 }
 
-/* Style infopanel */
+/* Info Panel  -------------------------------------------------- */
 
 .title {
     font-size: .85em;
@@ -150,7 +155,17 @@ a {
 .flaticon-hookah:before,
 .flaticon-food:before {
     font-size: 1em;
+    line-height: 1.75;
+
 }
+
+.filter-icons {
+    text-align: center;}
+
+    .filter-icons label {
+        text-align: center;}
+
+        .filter-title { font-size: .75em;text-transform: uppercase;}
 
 li.no-stores {
     display: none;
@@ -160,20 +175,32 @@ li.no-stores:after {
     content: "No establishments in this area match your criteria."
 }
 
-/* Filter List */
+/* Filter List -------------------------------------------------- */
 
 .search-filters input {
-    visibility: hidden;
-}
+display: none;}
 
 .search-filters i:before {
     font-size: 1.75em;
     text-align: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background-color: white;
+    /*border-radius: 50%;
+    background-color: white;*/
     display: block;
+    padding: 0;
+margin: 0 auto;
+}
+
+.filter-icons.favs i img {
+
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    border-radius: 14%;
+
+    margin: 0 auto;
 }
 
 .search-filters i:before:hover {
@@ -184,7 +211,14 @@ li.no-stores:after {
     transition: transform .2s;
 }
 
-/* Authentication stuff*/
+
+.filterOn + label i,
+.filterOn + label .filter-title {color: red;}
+
+.filterOn i {color: red;}
+
+
+/* Authentication -------------------------------------------------- */
 
 #quickstart-avatar img {
     border-radius: 50%;
@@ -223,12 +257,13 @@ li.no-stores:after {
     display: block;
 }
 
-/* Parallax -------------------------------------------------- */
+/* Nav -------------------------------------------------- */
 
 .navbar {
     border-radius: 0;
     transition: all 0.3s ease-out;
     height: 60px;
+    padding: 0;
     background-color: rgba(255, 255, 255, 0)
 }
 
@@ -236,6 +271,9 @@ li.no-stores:after {
     background-color: #fff !important;
     transition: background-color 200ms linear;
 }
+
+/* Parallax -------------------------------------------------- */
+
 
 /*.affix {
     position: fixed;
@@ -288,16 +326,35 @@ li.no-stores:after {
     height: 100%;
     position: fixed;
     overflow: auto;
-    padding-top: 100px;
+    /*padding-top: 100px;
+    top: 60px;*/
 }
 
-.map-wrapper {
+/*.map-wrapper {
     position: fixed;
     height: 800px;
     bottom: 0;
     overflow: auto;
+
+    width: 64.5%;
+    margin-right: 15px;
+}
+*/
+
+.map-col {
+
+    height: 100%;
+    position: fixed;
+    overflow: auto;
 }
 
+.map-wrapper{
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 #map_canvas iframe {
     position: absolute;
     top: 0;
@@ -305,7 +362,7 @@ li.no-stores:after {
     right: 0;
     left: 0;
 }
-
+.search-filters { padding-top: 80px;}
 /*#description {
     text-align: center;
     position: absolute;
@@ -328,7 +385,20 @@ li.no-stores:after {
 
 .pupper { width: 80%; }
 
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
 /* */
 
 /****/
+
+
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+ .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+  }

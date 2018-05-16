@@ -64,7 +64,7 @@ function initApp() {
             var isAnonymous = user.isAnonymous;
             var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
-            $("label > i").addClass("loggedin");
+            $("filter-icons.favs").addClass("loggedin");
 
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as ' + displayName;
             $("#quickstart-sign-in").text('Sign out');
@@ -83,7 +83,7 @@ function initApp() {
             document.getElementById('quickstart-account-details').textContent = '';
             document.getElementById('quickstart-oauthtoken').textContent = '';
             document.getElementById('quickstart-avatar').innerHTML = '';
-            $("label > i").removeClass("loggedin"); // this is to hide the Favorites icon
+            $("filter-icons.favs").removeClass("loggedin"); // this is to hide the Favorites icon
 
             // [END_EXCLUDE]
         }

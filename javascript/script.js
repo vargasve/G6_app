@@ -1,8 +1,6 @@
 // Grabbing and populating favorites based on map boundaries
 
 var searchwords = "happy+hour";
-var markers = [];
-var infoWindow;
 var austin = { lat: 30.2672, lng: -97.7431 };
 
 //////////////////////////////////////////////////
@@ -13,111 +11,40 @@ function initMap() {
 
     var map_options = {
         zoom: 15,
-        maxZoom: 15,
-        minZoom: 12,
+        maxZoom: 16,
+        disableDefaultUI: true,
+        //minZoom: 12,
         center: austin,
-        gestureHandling: "none",
-        zoomControl: false,
-        styles: [
-            {
-                "featureType": "landscape.natural",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    },
-                    {
-                        "color": "#e0efef"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    },
-                    {
-                        "hue": "#1900ff"
-                    },
-                    {
-                        "color": "#c0e8e8"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "lightness": 100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit.line",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    },
-                    {
-                        "lightness": 700
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#7dcdcd"
-                    }
-                ]
-            }
-        ]
+        //gestureHandling: "none",
+        //zoomControl: false,
+
     };
 
     var map = new google.maps.Map(map_document, map_options);
-    infoWindow = new google.maps.InfoWindow();
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
             };
 
-            //infoWindow.setPosition(pos);
-            //infoWindow.setContent('Location found.');
-            //infoWindow.open(map);
-            map.setCenter(pos);
-            map.setZoom(15);
-            //map.fitBounds(bounds);
-            var listener = google.maps.event.addListener(map, "idle", function () {
-                if (map.getZoom() > 16) map.setZoom(16);
-                google.maps.event.removeListener(listener);
-            });
+    //infoWindow.setPosition(pos);
+    //infoWindow.setContent('Location found.');
+    //infoWindow.open(map);
+                map.setCenter(pos);
+                map.setZoom(15);
+                var listener = google.maps.event.addListener(map, "idle", function () {
+                    if (map.getZoom() < 14) map.setZoom(16);
+                    google.maps.event.removeListener(listener);
+                });
 
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+            }, function () {
+                handleLocationError(true, map.getCenter());
+            });
+        } else {
+            handleLocationError(false,map.getCenter());
+        }
 
     initPanel(map);
 }
@@ -130,18 +57,15 @@ function initPanel(map) {
     var data = new PlacesDataSource(map);
 
     var view = new storeLocator.View(map, data, {
-        geolocation: true,
+                geolocation: true,
     })
 
     var markerSize = new google.maps.Size(24, 24);
     view.createMarker = function (store) {
         let marker = new google.maps.Marker({
             position: store.getLocation(),
-            animation: google.maps.Animation.DROP,
 
         });
-
-        markers.push(marker);
 
         return marker;
     };
@@ -150,7 +74,23 @@ function initPanel(map) {
 
     var panel = new storeLocator.Panel(panelDiv, {
         view: view,
-        featureFilter: true
+        //        featureFilter: true
+    });
+
+    //////////////////////////////////////////////////
+
+    google.maps.event.addListener(view, "selectedStore_changed", function (selectedStore) {
+        if (!selectedStore) {
+            return;
+        }
+        var selectedStoreEntry = $('#store-' + selectedStore.id_);
+        var storePanel = $('.panelwrap');;
+
+        if (selectedStoreEntry && storePanel) {
+            storePanel.animate({
+              scrollTop: selectedStoreEntry.offset().top - storePanel.offset().top + storePanel.scrollTop()
+            });
+        } 
     });
 
     //////////////////////////////////////////////////
@@ -166,7 +106,14 @@ function initPanel(map) {
     $("#food-check").on("click", refreshMarkers);
     $("#hookah-check").on("click", refreshMarkers);
     $("#dog-check").on("click", refreshMarkers);
+    $("#fav-check").on("click", refreshMarkers);
+
 }
+
+$(".filter-icons.beer").click(function () {
+    $(this).toggleClass("filterOn"); 
+})
+
 
 //////////////////////////////////////////////////
 
@@ -270,7 +217,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         var callbacksRemaining = results.length;
 
         function detailsCallback(details, details_status, snapshot, result) {
-            console.log(result);
+            // console.log(result);
 
             if (details && details_status != 'CACHED') {
                 details_cache[result.place_id] = details;
@@ -338,6 +285,16 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                 console.log('invoking stores callback');
                 callback(stores);
             }
+
+            // Make a function that shows a place when marker is clicked and hoist to top
+            // Make click event for place marker
+            // On click, ensure it centers on map
+            // Also, make sure it highlights on the sidebar, and hoist the result to top of list
+            // Then, make sure it does not duplicate the result
+
+
+
+
         }
 
         function databaseCallback(snapshot, result) {
@@ -354,7 +311,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
 
         for (let result of results) {
-            console.log(result);
+            // console.log(result);
 
             if (!result) {
                 if (--callbacksRemaining <= 0) {
@@ -389,3 +346,64 @@ function matchFeatures(features) {
 
 google.maps.event.addDomListener(window, 'load', initMap);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Check out code
+
+/*
+storeLocator.Panel.prototype.selectedStore_changed = function() {
+    $(".highlighted", this.storeList_).removeClass("highlighted");
+    var a = this,
+        b = this.get("selectedStore");
+    if (b) {
+        this.directionsTo_ = b;
+      this.storeList_.find("#store-" + b.getId()).addClass("highlighted");
+                                $(".highlighted").click(function () { 
+                                $(this).parent().prepend($(this));
+                                }) 
+        this.settings_.directions && this.directionsPanel_.find(".directions-to").val(b.getDetails().title);
+        var c = a.get("view").getInfoWindow().getContent(),
+            d = $("\x3ca/\x3e").text("Directions").attr("href", "#").addClass("action").addClass("directions"),
+            e = $("\x3ca/\x3e").text("Zoom here").attr("href",
+                "#").addClass("action").addClass("zoomhere"),
+            f = $("\x3ca/\x3e").text("Street view").attr("href", "#").addClass("action").addClass("streetview");
+        d.click(function() {
+            a.showDirections();
+            return !1
+        });
+        e.click(function() {
+            a.get("view").getMap().setOptions({
+                center: b.getLocation(),
+                zoom: 16
+            })
+        });
+        f.click(function() {
+            var c = a.get("view").getMap().getStreetView();
+            c.setPosition(b.getLocation());
+            c.setVisible(!0)
+        });
+        $(c).append(d).append(e).append(f)
+    }
+};
+
+$("li").click(function() {
+     
+    $(this).parent().prepend($(this));
+    
+  });*/
