@@ -325,6 +325,9 @@ li.no-stores:after {
 .parallax__layer--base {
     transform: translateZ(0);
 }
+.parallax__layer--base.topbase { 
+    display: flex;
+    align-items: center;}
 
 .parallax__layer--back {
     transform: translateZ(-1px);
@@ -388,7 +391,7 @@ li.no-stores:after {
 
 #description h2 { text-transform: uppercase; font-size: 2.5em; color: #fff; }
 #description .button {}
-.billboard { margin-top: 100px; padding: 25px;
+.billboard { /*margin-top: 100px; */padding: 25px;
     background-color: cadetblue; }
 
 
