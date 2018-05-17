@@ -18,6 +18,77 @@ function initMap() {
         center: austin,
         //gestureHandling: "none",
         //zoomControl: false,
+        styles: [
+            {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#e0efef"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "hue": "#1900ff"
+                    },
+                    {
+                        "color": "#c0e8e8"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 700
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#7dcdcd"
+                    }
+                ]
+            }
+        ]
 
     };
 
@@ -65,7 +136,7 @@ function initPanel(map) {
     view.createMarker = function (store) {
         let marker = new google.maps.Marker({
             position: store.getLocation(),
-
+            icon: 'images/map-marker.png',
         });
 
         return marker;
@@ -141,19 +212,21 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
     if (this.props_.picture) {
         infoHTML = infoHTML + '<div class="picture"><img src="' + this.props_.picture + '"></div>';
     }
-    if (this.props_.price_level) {
-        infoHTML = infoHTML + '<div class="prices">' + this.props_.price_level + '</div>';
-    }
     if (this.props_.title) {
         infoHTML = infoHTML + '<div class="title">' + this.props_.title + '</div>';
     }
-    if (this.props_.times) {
-        infoHTML = infoHTML + '<div class="times">' + this.props_.times + '</div>';
+    if (this.props_.price_level) {
+        infoHTML = infoHTML + '<div class="prices">' + this.props_.price_level + '</div>';
     }
     if (this.props_.specials) {
         infoHTML = infoHTML + '<div class="specials">' + this.props_.specials + '</div>';
     }
-
+    if (this.props_.times) {
+        infoHTML = infoHTML + '<div class="times">' + this.props_.times + '</div>';
+    }
+    if (this.props_.hours) {
+        infoHTML = infoHTML + '<div class="hours">' + this.props_.hours + '</div>';
+    }
     if (this.props_.website) {
         infoHTML = infoHTML + '<div class="website">' + this.props_.website + '</div>';
     }
@@ -166,34 +239,32 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
     }
 
 
-    if (this.props_.hours) {
-        infoHTML = infoHTML + '<div class="hours">' + this.props_.hours + '</div>';
-    }
+
     if (this.props_.featureList) {
         featuresHTML = '';
 
         if (this.props_.featureList.beer) {
-            featuresHTML += '<div class="beer"><i class="flaticon-beer"></i></div>';
+            featuresHTML += '<div class="beer"><i class="flaticon-food"></i></div>';
         }
         if (this.props_.featureList.wine) {
-            featuresHTML += '<div class="wine"><i class="flaticon-wine-glass"></i></div>';
+            featuresHTML += '<div class="wine"><i class="flaticon-food-1"></i></div>';
         }
         if (this.props_.featureList.cocktails) {
-            featuresHTML += '<div class="cocktails"><i class="flaticon-food"></i></div>';
+            featuresHTML += '<div class="cocktails"><i class="flaticon-food-2"></i></div>';
         }
         if (this.props_.featureList.food) {
-            featuresHTML += '<div class="food"><i class="flaticon-cutlery"></i></div>';
+            featuresHTML += '<div class="food"><i class="flaticon-spoon"></i></div>';
         }
         if (this.props_.featureList.hookah) {
-            featuresHTML += '<div class="hookah"><i class="flaticon-hookah"></i></div>';
+            featuresHTML += '<div class="hookah"><i class="flaticon-oriental"></i></div>';
         }
         if (this.props_.featureList.dog) {
             featuresHTML += '<div class="dog"><i class="flaticon-dog"></i></div>';
         }
         if (this.props_.featureList.fav) {
-            featuresHTML += '<div class="fav"><i class="flaticon-dog"></i></div>';
+            featuresHTML += '<div class="fav"><i class="flaticon-favorite"></i></div>';
         }
-        infoHTML = infoHTML + '<div class="featurelist d-flex justify-content-center">' + featuresHTML + '</div>';
+        infoHTML = infoHTML + '<div class="featurelist d-flex justify-content-around">' + featuresHTML + '</div>';
     }
     return infoHTML + "</div>";
 
@@ -230,7 +301,7 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
             var props = {
                 title: result.name,
                 price_level: result.price_level,
-                address: result.vicinity,
+                address: result.vicinity.substring(0, result.vicinity.length-8),
                 types: result.types,
                 //icon: result.icon,
                 hours: result.opening_hours,
