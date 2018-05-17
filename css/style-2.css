@@ -505,7 +505,8 @@ button .favorited {
         background-color: #000!important;
         /* padding-top: 60px; */
         height: auto;
-        padding-bottom: 15px;}
+        padding-bottom: 15px;
+    color: rgba(255,255,255,1)!important;}
     .panelwrap {
         height: 100%;
         position: relative;
