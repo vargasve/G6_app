@@ -16,16 +16,7 @@ function toggleSignIn() {
 
 }
 
-/**
- * initApp handles setting up UI event listeners and registering Firebase auth listeners:
- *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
- *    out, and that is where we update the UI.
- *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
- *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
- */
 function initApp() {
-
-    
     firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -64,41 +55,84 @@ function initApp() {
             var isAnonymous = user.isAnonymous;
             var uid = user.uid; // Use this key to store favorites
             var providerData = user.providerData;
-            $("filter-icons.favs").addClass("loggedin");
+            $(".filter-icons.favs").show();
 
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as ' + displayName;
             $("#quickstart-sign-in").text('Sign out');
             $("#quickstart-sign-in").addClass('qs-sign-out');
-            //var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            //signinStuff.classList.add('qs-sign-out'); 
             document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
             document.getElementById('quickstart-account-details').textContent = displayName;
             document.getElementById('quickstart-avatar').innerHTML = "<img src='" + photoURL + "'/>";
 
+            window.userUID = uid;
+
+            var database = firebase.database();
+
+            database.ref('/happyHowlerData/users').child(uid).child('favorites').on('child_added', function (childSnapshot) {
+                window.userFavorites[childSnapshot.key] = true;
+                $('[data-fav="' + childSnapshot.key + '"]').addClass('favorited');
+            });
+            database.ref('/happyHowlerData/users').child(uid).child('favorites').on('child_removed', function (childSnapshot) {
+                window.userFavorites[childSnapshot.key] = false;
+                $('[data-fav="' + childSnapshot.key + '"]').removeClass('favorited');
+            });
 
         } else {
-
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
             document.getElementById('quickstart-account-details').textContent = '';
             document.getElementById('quickstart-oauthtoken').textContent = '';
             document.getElementById('quickstart-avatar').innerHTML = '';
-            $("filter-icons.favs").removeClass("loggedin"); // this is to hide the Favorites icon
+            $(".filter-icons.favs").hide(); // this is to hide the Favorites icon
 
-            // [END_EXCLUDE]
+            if (window.userUID) {
+                var database = firebase.database();
+
+                database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').off('child_added');
+                database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').off('child_removed');
+                $('.favorites-button').removeClass('favorited');
+                $('.favorites-button').hide();
+            }
+
+            window.userUID = null;
+            window.userFavorites = {};
         }
-        // [START_EXCLUDE]
-        document.getElementById('quickstart-sign-in').disabled = false;
-        // [END_EXCLUDE]
-    });
-    // [END authstatelistener]
 
+        document.getElementById('quickstart-sign-in').disabled = false;
+
+    });
+
+    
     document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
 }
 
 
 window.onload = function () {
-    initApp();
+    // Turn on or off for testing purposes
+    var LOCAL_TESTING_MODE = false;
+
+    if (LOCAL_TESTING_MODE) {
+        $(".filter-icons.favs").show();
+
+        window.userUID = 'foo';
+        window.userFavorites = {};
+
+        var database = firebase.database();
+
+        database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').on('child_added', function (childSnapshot) {
+            window.userFavorites[childSnapshot.key] = true;
+            $('[data-fav="' + childSnapshot.key + '"]').addClass('favorited');
+        });
+        database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').on('child_removed', function (childSnapshot) {
+            window.userFavorites[childSnapshot.key] = false;
+            $('[data-fav="' + childSnapshot.key + '"]').removeClass('favorited');
+        });
+    } else {
+        window.userUID = null;
+        window.userFavorites = {};
+
+        initApp();
+    }
 };
 
 

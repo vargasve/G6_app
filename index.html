@@ -64,14 +64,14 @@
         <h1>
           <a class="navbar-brand" href="#">
             <span>Happy Howler</span>
-            <img src="images/logo-transparent.png" height="50px" width="175px">
+            <img src="images/logo-transparent-white.png" height="50px" width="auto">
           </a>
         </h1>
       </div>
       <div id="weather"></div>
       <!-- GOOGLE AUTH HERE -->
 
-      <div class="d-flex justify-content-end align-items-center">
+      <div class="d-flex justify-content-end align-items-center signin-wrapper col-lg-4 col-sm-12">
         <div id="quickstart-account-details"></div>
         <div id="quickstart-sign-in-status"></div>
         <div id="quickstart-oauthtoken"></div>
@@ -100,11 +100,10 @@
             <div class="col-md-8 align-self-top">
               <div id="description">
                 <h2>Having a ruff week?</h2>
-                <p>Click on the filter icons below to find your perfect Happy Hour spot. Looking to have a Paloma with your
-                  pupper? We can help. Maybe nachos and a nitro? We'll find that too.
+                <p>Looking to have a Paloma with your pupper? We can help. Maybe nachos and a nitro? We'll find that too.
                 </p>
-                <p>All of your Happy Hour needs sniffed out in one spot.</p>
-                <a class="btn btn-primary btn-lg" href="#bottom">Check out the map!</a>
+                <p>All of your Happy Hour needs sniffed out in one spot. Get started below and customize your search to find the best spots near you.</p>
+                <a class="btn btn-primary btn-lg" href="#bottom">Search Now</a>
               </div>
             </div>
 
@@ -120,9 +119,10 @@
     <section class="parallax__group" id="bottom">
       <div class="parallax__layer parallax__layer--back">
         <div class="container-fluid bottom">
-          <!-- logo header -->
+          <div class="row">
+            <!-- logo header -->
 
-          <!-- search buttons -->
+            <!-- search buttons -->
             <div class="col-lg-4 col-md-6 col-sm-12 panelwrap">
               <div class="search-filters">
 
@@ -175,7 +175,7 @@
                   <div class="filter-icons favs">
                     <input id="fav-check" type="checkbox">
                     <label for="fav-check">
-                        <i class="flaticon-favorite"></i>
+                      <i class="flaticon-favorite"></i>
                       <div class="filter-title">Favs</div>
                     </label>
                   </div>
@@ -192,8 +192,9 @@
                 </div>
               </div>
             </div>
-            </div>
           </div>
+        </div>
+      </div>
     </section>
   </main>
 </body>
