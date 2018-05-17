@@ -405,12 +405,26 @@ button .favorited {
     color: #fff;
 }
 
-#description .button {}
+#description .btn-primary {
+    background-color: #7dcdcd;
+    border-color: #7dcdcd;
+    text-transform: uppercase;
+    font-size: .75em;
+    font-weight: 700;
+}
+
+#description .btn-primary:hover {
+
+    background-color: rgba(120, 99, 152, 1);
+
+}
 
 .billboard {
     /*margin-top: 100px; */
+    margin-top: -80px;
     padding: 25px;
-    background-color: cadetblue;
+    background-color: rgba(120, 99, 152, .75);
+    border-radius: 12px;
 }
 
 #description p {
@@ -539,6 +553,8 @@ button .favorited {
 
 
     #weather span { display: none; }
+
+    .pupper { display: none;}
 
 
 }
