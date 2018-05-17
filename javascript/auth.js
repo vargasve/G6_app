@@ -73,6 +73,8 @@ function initApp() {
 
             window.userUID = uid;
 
+            var database = firebase.database();
+            
             database.ref('/happyHowlerData/users').child(uid).child('favorites').on('child_added', function (childSnapshot) {
                 window.userFavorites[childSnapshot.key] = true;
                 $('[data-fav="' + childSnapshot.key + '"]').addClass('favorited');
