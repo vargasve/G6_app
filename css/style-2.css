@@ -182,6 +182,11 @@ li.no-stores:after {
     content: "No establishments in this area match your criteria."
 }
 
+
+button .favorited {
+    background-color: red;
+}
+
 /* Filter List -------------------------------------------------- */
 
 .search-filters input {

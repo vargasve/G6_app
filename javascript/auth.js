@@ -24,8 +24,6 @@ function toggleSignIn() {
  *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
  */
 function initApp() {
-
-    
     firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -69,21 +67,35 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in as ' + displayName;
             $("#quickstart-sign-in").text('Sign out');
             $("#quickstart-sign-in").addClass('qs-sign-out');
-            //var signinStuff = document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            //signinStuff.classList.add('qs-sign-out'); 
             document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
             document.getElementById('quickstart-account-details').textContent = displayName;
             document.getElementById('quickstart-avatar').innerHTML = "<img src='" + photoURL + "'/>";
 
+            window.userUID = uid;
+
+            database.ref('/happyHowlerData/users').child(uid).child('favorites').on('child_added', function (childSnapshot) {
+                window.userFavorites[childSnapshot.key] = true;
+                $('[data-fav="' + childSnapshot.key + '"]').addClass('favorited');
+            });
+            database.ref('/happyHowlerData/users').child(uid).child('favorites').on('child_removed', function (childSnapshot) {
+                window.userFavorites[childSnapshot.key] = false;
+                $('[data-fav="' + childSnapshot.key + '"]').removeClass('favorited');
+            });
 
         } else {
-
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
             document.getElementById('quickstart-account-details').textContent = '';
             document.getElementById('quickstart-oauthtoken').textContent = '';
             document.getElementById('quickstart-avatar').innerHTML = '';
             $("filter-icons.favs").removeClass("loggedin"); // this is to hide the Favorites icon
+
+            window.userUID = null;
+            window.userFavorites = {};
+
+            // remove callbacks for child_added/child_removed
+            // remove all favorites buttons 'favorited'
+            // OR just refresh the page!
 
             // [END_EXCLUDE]
         }
@@ -98,6 +110,9 @@ function initApp() {
 
 
 window.onload = function () {
+    window.userUID = null;
+    window.userFavorites = {};
+
     initApp();
 };
 

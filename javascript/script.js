@@ -7,7 +7,6 @@ var infoWindow;
 //////////////////////////////////////////////////
 
 function initMap() {
-
     var map_document = document.getElementById('map-canvas');
 
     var map_options = {
@@ -182,8 +181,8 @@ function initPanel(map) {
 
 
     $(".filter-icons > input").on("click", function () {
-        $(this).toggleClass("filterOn"); 
-    })    
+        $(this).toggleClass("filterOn");
+    })
 }
 
 
@@ -205,9 +204,29 @@ function PlacesDataSource(map) {
 
 //////////////////////////////////////////////////
 
-storeLocator.Store.prototype.getInfoWindowContent = function (x) {
+function toggleFavorite (butt) {
+    var place_id = $(butt).data('fav');
+    var database = firebase.database();
 
+    if (window.userFavorites[place_id]) {
+        database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').child(place_id).remove();
+    } else {
+        database.ref('/happyHowlerData/users').child(window.userUID).child('favorites').child(place_id).set(1);
+    }
+}
+
+//////////////////////////////////////////////////
+
+storeLocator.Store.prototype.getInfoWindowContent = function (x) {
     var infoHTML = "<div class='store'>";
+
+    if (window.userUID) {
+        infoHTML = infoHTML + '<button onClick="toggleFavorite(this)" class="favorites-button';
+        if (window.userFavorites[this.props_.place_id]) {
+            infoHTML = infoHTML + ' favorited';
+        }
+        infoHTML = infoHTML + '" data-fav="' + this.props_.place_id + '">Favorite</button>';
+    }
 
     if (this.props_.picture) {
         infoHTML = infoHTML + '<div class="picture"><img src="' + this.props_.picture + '"></div>';
@@ -299,9 +318,10 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
             }
 
             var props = {
+                place_id: result.place_id,
                 title: result.name,
                 price_level: result.price_level,
-                address: result.vicinity.substring(0, result.vicinity.length-8),
+                address: result.vicinity.substring(0, result.vicinity.length - 8),
                 types: result.types,
                 //icon: result.icon,
                 hours: result.opening_hours,
@@ -348,12 +368,12 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
                 props.featureList = snapshot.val().features;
                 features = snapshot.val().features;
             }
-            if(snapshot.val() !== null) {
 
+            if (snapshot.val() !== null) {
                 props.specials = snapshot.val().specials;
             }
 
-            if (matchFeatures(features)) {
+            if (matchFeatures(features, result.place_id)) {
                 var store = new storeLocator.Store(result.id, result.geometry.location, null, props);
                 stores.push(store);
             } else {
@@ -381,7 +401,6 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
         }
 
         for (let result of results) {
-
             if (!result) {
                 if (--callbacksRemaining <= 0) {
                     console.log('invoking stores callback');
@@ -399,19 +418,20 @@ PlacesDataSource.prototype.getStores = function (bounds, features, callback) {
 
 //////////////////////////////////////////////////
 
-function matchFeatures(features) {
+function matchFeatures(features, place_id) {
     if (($("#beer-check").prop("checked") && !features.beer) ||
         ($("#wine-check").prop("checked") && !features.wine) ||
         ($("#cocktails-check").prop("checked") && !features.cocktails) ||
         ($("#food-check").prop("checked") && !features.food) ||
         ($("#hookah-check").prop("checked") && !features.hookah) ||
         ($("#dog-check").prop("checked") && !features.dog) ||
-        ($("#fav-check").prop("checked") && !features.fav)) {
+        ($("#fav-check").prop("checked") && (typeof (window.userFavorites) !== "object" || !window.userFavorites[place_id]))) {
         return false;
     } else {
         return true;
     }
 }
+
 
 google.maps.event.addDomListener(window, 'load', initMap);
 
