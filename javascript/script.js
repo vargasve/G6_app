@@ -135,7 +135,7 @@ function initPanel(map) {
     view.createMarker = function (store) {
         let marker = new google.maps.Marker({
             position: store.getLocation(),
-            icon: 'images/map-marker.png',
+            //icon: 'images/map-marker.png',
         });
 
         return marker;
@@ -225,7 +225,7 @@ storeLocator.Store.prototype.getInfoWindowContent = function (x) {
         if (window.userFavorites[this.props_.place_id]) {
             infoHTML = infoHTML + ' favorited';
         }
-        infoHTML = infoHTML + '" data-fav="' + this.props_.place_id + '">Favorite</button>';
+        infoHTML = infoHTML + '" data-fav="' + this.props_.place_id + '"></button>';
     }
 
     if (this.props_.picture) {
@@ -452,47 +452,3 @@ google.maps.event.addDomListener(window, 'load', initMap);
 
 
 
-
-// Check out code
-
-/*
-storeLocator.Panel.prototype.selectedStore_changed = function() {
-    $(".highlighted", this.storeList_).removeClass("highlighted");
-    var a = this,
-        b = this.get("selectedStore");
-    if (b) {
-        this.directionsTo_ = b;
-      this.storeList_.find("#store-" + b.getId()).addClass("highlighted");
-                                $(".highlighted").click(function () { 
-                                $(this).parent().prepend($(this));
-                                }) 
-        this.settings_.directions && this.directionsPanel_.find(".directions-to").val(b.getDetails().title);
-        var c = a.get("view").getInfoWindow().getContent(),
-            d = $("\x3ca/\x3e").text("Directions").attr("href", "#").addClass("action").addClass("directions"),
-            e = $("\x3ca/\x3e").text("Zoom here").attr("href",
-                "#").addClass("action").addClass("zoomhere"),
-            f = $("\x3ca/\x3e").text("Street view").attr("href", "#").addClass("action").addClass("streetview");
-        d.click(function() {
-            a.showDirections();
-            return !1
-        });
-        e.click(function() {
-            a.get("view").getMap().setOptions({
-                center: b.getLocation(),
-                zoom: 16
-            })
-        });
-        f.click(function() {
-            var c = a.get("view").getMap().getStreetView();
-            c.setPosition(b.getLocation());
-            c.setVisible(!0)
-        });
-        $(c).append(d).append(e).append(f)
-    }
-};
-
-$("li").click(function() {
-     
-    $(this).parent().prepend($(this));
-    
-  });*/
