@@ -1,0 +1,66 @@
+.title {
+    font-size: .85em!important;
+}
+
+.prices {
+display: inline!important;
+color: rgba(200,0,0,1)!important;
+font-size: 0.75em;
+}
+
+.prices:after {
+      content: " - "!important;
+
+}
+.address {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.75em!important;
+    border-top: 1px solid #f1f1f1;
+}
+
+.hours {
+    color: rgba(200,0,0,1)!important;
+    font-size: 0.75em!important;
+    display: inline!important;
+text-transform: uppercase;
+}
+
+.hours:before {
+      content: " - ";
+}
+
+.times {
+  display: inline;
+    font-size: 0.75em!important;
+
+}
+.times:before {
+      content: "\A";
+white-space: pre;
+}
+
+.featuresList {
+    display: flex!important;
+    border-top: 1px solid #f1f1f1!important;
+}
+
+.specials {
+    display: inline!important;
+    font-size: .75em!important;
+    font-weight: 500!important;
+}
+.specials::before {
+  }
+
+
+  .flaticon-beer:before,
+.flaticon-cutlery:before,
+.flaticon-wine-glass:before,
+.flaticon-dog:before,
+.flaticon-hookah:before,
+.flaticon-food:before {
+    font-size: 1em;
+    line-height: 1.75;
+    margin-left: 0!important;
+}

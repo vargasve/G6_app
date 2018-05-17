@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 06/05/2018 19:32
+  	Creation date: 17/05/2018 01:40
   	*/
 
 @font-face {
@@ -24,14 +24,15 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
-        font-size: 40px;
+        font-size: 20px;
 font-style: normal;
 margin-left: 20px;
 }
 
 .flaticon-dog:before { content: "\f100"; }
-.flaticon-hookah:before { content: "\f101"; }
-.flaticon-food:before { content: "\f102"; }
-.flaticon-wine-glass:before { content: "\f103"; }
-.flaticon-beer:before { content: "\f104"; }
-.flaticon-cutlery:before { content: "\f105"; }
+.flaticon-food-2:before { content: "\f101"; }
+.flaticon-food-1:before { content: "\f102"; }
+.flaticon-food:before { content: "\f103"; }
+.flaticon-oriental:before { content: "\f104"; }
+.flaticon-spoon:before { content: "\f105"; }
+.flaticon-favorite:before { content: "\f106"; }

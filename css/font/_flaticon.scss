@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 06/05/2018 19:32
+    Creation date: 17/05/2018 01:40
     */
 
     @font-face {
@@ -37,15 +37,17 @@
     }
 
     .flaticon-dog:before { content: "\f100"; }
-.flaticon-hookah:before { content: "\f101"; }
-.flaticon-food:before { content: "\f102"; }
-.flaticon-wine-glass:before { content: "\f103"; }
-.flaticon-beer:before { content: "\f104"; }
-.flaticon-cutlery:before { content: "\f105"; }
+.flaticon-food-2:before { content: "\f101"; }
+.flaticon-food-1:before { content: "\f102"; }
+.flaticon-food:before { content: "\f103"; }
+.flaticon-oriental:before { content: "\f104"; }
+.flaticon-spoon:before { content: "\f105"; }
+.flaticon-favorite:before { content: "\f106"; }
     
     $font-Flaticon-dog: "\f100";
-    $font-Flaticon-hookah: "\f101";
-    $font-Flaticon-food: "\f102";
-    $font-Flaticon-wine-glass: "\f103";
-    $font-Flaticon-beer: "\f104";
-    $font-Flaticon-cutlery: "\f105";
+    $font-Flaticon-food-2: "\f101";
+    $font-Flaticon-food-1: "\f102";
+    $font-Flaticon-food: "\f103";
+    $font-Flaticon-oriental: "\f104";
+    $font-Flaticon-spoon: "\f105";
+    $font-Flaticon-favorite: "\f106";
