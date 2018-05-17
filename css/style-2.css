@@ -642,7 +642,8 @@ button .favorited {
 #map-canvas .specials,
 #map-canvas .featurelist,
 #map-canvas .favorites-button,
-#map-canvas .directions
+#map-canvas .directions,
+#map-canvas .streetview
  {
     display: none!important;
 }
